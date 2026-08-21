@@ -148,6 +148,12 @@ class ChoiceSystem {
     document.getElementById('history-exam-points').innerHTML = `
       <div><strong>考纲对应：</strong>${analysis.examPoints.map(p => `<span class="exam-tag">${p}</span>`).join(' ')}</div>
     `;
+    if (analysis.analysis) {
+      document.getElementById('history-analysis').innerHTML = `<p><strong>深度剖析：</strong>${analysis.analysis}</p>`;
+    }
+    if (analysis.question) {
+      document.getElementById('history-question').innerHTML = `<p><strong>思考问题：</strong>${analysis.question}</p>`;
+    }
 
     // 绑定继续按钮
     const continueBtn = document.getElementById('continue-history');
@@ -168,34 +174,19 @@ class ChoiceSystem {
     };
   }
 
-  // 生成 AI 分析
+  // 生成 History Pause 剖析内容（全静态化：读 story.json 预写文本，不调 AI）
   async generateAnalysis(config) {
-    try {
-      const response = await fetch(settingsData.ai.endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'history_pause',
-          chapter: game.getCurrentChapter(),
-          playerChoices: game.state.choices.slice(-3),
-          currentVariables: game.state.variables,
-          historicalEvent: config.event || '未知事件',
-          examPoints: config.examPoints || []
-        })
-      });
-
-      if (response.ok) {
-        return await response.json();
-      }
-    } catch (e) {
-      console.warn('AI 分析失败，使用 fallback:', e);
-    }
-
-    // Fallback 内容
+    const staticAnalysis = (config && config.staticAnalysis) || {};
+    const lastChoice = game.state.choices.length > 0
+      ? game.state.choices[game.state.choices.length - 1].text
+      : '';
     return {
-      experience: '你的选择展现了你在当时处境下的思考和判断。',
-      history: '这是菲律宾历史上一个重要的转折点。',
-      examPoints: config.examPoints || ['2.4.2']
+      experience: (staticAnalysis.experience || '你的选择展现了你在当时处境下的思考和判断。')
+        .replace(/\{choice\}/g, lastChoice || '你的选择'),
+      history: staticAnalysis.history || '这是菲律宾历史上一个重要的转折点。',
+      examPoints: staticAnalysis.examPoints || (config && config.examPoints) || ['2.4.2'],
+      analysis: staticAnalysis.analysis || '',
+      question: staticAnalysis.question || ''
     };
   }
 }
