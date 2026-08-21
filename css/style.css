@@ -1,0 +1,683 @@
+/* ===== 全局样式 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 教室投屏：全局放大 + 加粗 */
+html {
+  font-size: 19px;
+}
+body {
+  font-weight: 500;
+}
+
+:root {
+  --sepia-dark: #2c1810;
+  --sepia-mid: #5d4037;
+  --sepia-light: #8d6e63;
+  --gold: #d4a574;
+  --gold-light: #e6c9a8;
+  --text-primary: #f5f0e8;
+  --text-secondary: #c4b5a0;
+  --overlay-bg: rgba(44, 24, 16, 0.95);
+}
+
+body {
+  font-family: 'Noto Serif SC', 'Georgia', serif;
+  background: var(--sepia-dark);
+  color: var(--text-primary);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+#game-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HUD ===== */
+#hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(44, 24, 16, 0.9), transparent);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#year-location {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+#year-location span {
+  margin-right: 20px;
+}
+
+#stats-bar {
+  display: flex;
+  gap: 15px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: help;
+  transition: color 0.3s;
+}
+
+.stat:hover {
+  color: var(--gold);
+}
+
+.stat .icon {
+  font-size: 1.4rem;
+}
+
+/* HUD 音量控制 */
+#hud-volume {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vol-btn {
+  background: none;
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  color: var(--gold);
+  font-size: 1.3rem;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.3s;
+}
+
+.vol-btn:hover {
+  background: rgba(212, 165, 116, 0.2);
+}
+
+#hud-volume-slider {
+  width: 110px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+/* ===== 主显示区 ===== */
+#main-display {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+#background-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.5s;
+}
+
+#background-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#character-layer {
+  position: absolute;
+  bottom: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* ===== 对话框 ===== */
+#dialogue-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  background: linear-gradient(to top, rgba(44, 24, 16, 0.98), rgba(44, 24, 16, 0.85));
+  border-top: 2px solid var(--gold);
+  padding: 20px 30px;
+  z-index: 50;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#dialogue-box:hover {
+  background: linear-gradient(to top, rgba(44, 24, 16, 1), rgba(44, 24, 16, 0.9));
+}
+
+#speaker-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+#speaker-portrait {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  object-fit: cover;
+}
+
+#speaker-name {
+  font-size: 1.6rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+#dialogue-text {
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-primary);
+  min-height: 80px;
+}
+
+#continue-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* ===== 选择按钮 ===== */
+#choices-container {
+  position: absolute;
+  bottom: 270px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 60;
+  min-width: 520px;
+}
+
+.choice-btn {
+  background: linear-gradient(135deg, var(--sepia-mid), var(--sepia-dark));
+  border: 2px solid var(--gold);
+  color: var(--text-primary);
+  padding: 18px 30px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+  text-align: left;
+}
+
+.choice-btn:hover {
+  background: linear-gradient(135deg, var(--gold), var(--sepia-mid));
+  color: var(--sepia-dark);
+  transform: scale(1.02);
+}
+
+/* ===== 覆盖层通用样式 ===== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-bg);
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.history-content,
+.menu-content,
+.settings-content,
+.report-content {
+  background: linear-gradient(135deg, var(--sepia-dark), var(--sepia-mid));
+  border: 3px solid var(--gold);
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.history-content h2,
+.menu-content h2,
+.settings-content h2,
+.report-content h2 {
+  color: var(--gold);
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.history-content p,
+.report-content p {
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.history-content button,
+.menu-content button,
+.settings-content button,
+.report-content button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: var(--gold);
+  color: var(--sepia-dark);
+  border: none;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.history-content button:hover,
+.menu-content button:hover,
+.settings-content button:hover,
+.report-content button:hover {
+  background: var(--gold-light);
+  transform: scale(1.02);
+}
+
+/* ===== 设置面板 ===== */
+.settings-content label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.settings-content input[type="range"] {
+  flex: 1;
+}
+
+/* ===== 革命报告 ===== */
+#report-stats {
+  margin: 20px 0;
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.stat-bar .label {
+  width: 110px;
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.stat-bar .bar {
+  flex: 1;
+  height: 26px;
+  background: var(--sepia-dark);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--gold);
+}
+
+.stat-bar .fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transition: width 0.5s;
+}
+
+.stat-bar .value {
+  width: 55px;
+  text-align: right;
+  color: var(--gold);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+#report-exam-mapping {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(212, 165, 116, 0.1);
+  border-left: 4px solid var(--gold);
+}
+
+#report-exam-mapping h3 {
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+#report-exam-mapping ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#report-exam-mapping li {
+  padding: 5px 0;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+#report-exam-mapping li::before {
+  content: "✓ ";
+  color: var(--gold);
+}
+
+/* ===== 结算综合打分 ===== */
+.score-panel {
+  text-align: center;
+  padding: 18px;
+  border-radius: 12px;
+  border: 2px solid var(--gold);
+  margin-bottom: 18px;
+}
+
+.score-number {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  line-height: 1.1;
+}
+
+.score-max {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.score-grade {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.score-note {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+.score-panel.grade-s { border-color: #ffd700; box-shadow: 0 0 18px rgba(255, 215, 0, 0.35); }
+.score-panel.grade-s .score-grade { color: #ffd700; }
+.score-panel.grade-a { border-color: #4caf50; }
+.score-panel.grade-a .score-grade { color: #81c784; }
+.score-panel.grade-b { border-color: #4fc3f7; }
+.score-panel.grade-b .score-grade { color: #4fc3f7; }
+.score-panel.grade-c { border-color: #ffb74d; }
+.score-panel.grade-c .score-grade { color: #ffb74d; }
+.score-panel.grade-d { border-color: #9e9e9e; }
+.score-panel.grade-d .score-grade { color: #bdbdbd; }
+
+/* ===== 排行榜 ===== */
+#report-leaderboard {
+  margin-top: 18px;
+  padding: 15px;
+  background: rgba(44, 24, 16, 0.6);
+  border: 1px solid var(--sepia-light);
+  border-radius: 10px;
+}
+
+#report-leaderboard h3 {
+  color: var(--gold);
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.lb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lb-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  background: rgba(212, 165, 116, 0.08);
+  border-radius: 6px;
+  font-size: 1.05rem;
+}
+
+.lb-row.lb-me {
+  background: rgba(212, 165, 116, 0.22);
+  border: 1px solid var(--gold);
+}
+
+.lb-rank {
+  width: 34px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.lb-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lb-personality {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.lb-score {
+  width: 48px;
+  text-align: right;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.lb-mine, .lb-status, .lb-empty {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.report-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.report-buttons button {
+  flex: 1;
+}
+
+/* ===== 动画类 ===== */
+.fade-in {
+  animation: fadeIn 0.5s forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.slide-up {
+  animation: slideUp 0.3s forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===== 开始菜单 & 介绍画面 ===== */
+#start-menu,
+#intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    linear-gradient(rgba(44, 24, 16, 0.85), rgba(44, 24, 16, 0.95)),
+    url('../assets/backgrounds/01_prologue_manila.jpg') center/cover no-repeat;
+  animation: fadeIn 0.6s forwards;
+}
+
+.start-content,
+.intro-content {
+  background: linear-gradient(135deg, rgba(44, 24, 16, 0.95), rgba(93, 64, 55, 0.9));
+  border: 3px solid var(--gold);
+  border-radius: 20px;
+  padding: 50px 60px;
+  max-width: 700px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.start-content h1,
+.intro-content h1 {
+  font-size: 3.2rem;
+  color: var(--gold);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
+}
+
+.start-content h2,
+.intro-content h2 {
+  font-size: 2rem;
+  color: var(--gold-light);
+  margin-bottom: 30px;
+}
+
+.start-content p,
+.intro-content p {
+  line-height: 1.8;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.intro-text {
+  margin-bottom: 30px;
+}
+
+.start-content button,
+.intro-content button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--sepia-dark);
+  border: none;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.start-content button:hover,
+.intro-content button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px rgba(212, 165, 116, 0.4);
+}
+
+.intro-content input[type="text"] {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-family: inherit;
+  background: var(--sepia-dark);
+  color: var(--text-primary);
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+  margin-bottom: 10px;
+  transition: border-color 0.3s;
+}
+
+.intro-content input[type="text"]:focus {
+  border-color: var(--gold-light);
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+  #hud {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #stats-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #dialogue-box {
+    height: 200px;
+    padding: 15px 20px;
+  }
+
+  #choices-container {
+    bottom: 220px;
+    min-width: auto;
+    width: 92%;
+  }
+
+  .choice-btn {
+    padding: 14px 20px;
+    font-size: 1.2rem;
+  }
+}

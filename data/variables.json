@@ -1,0 +1,124 @@
+const variablesData = {
+  "variables": {
+    "hope": {
+      "name": "希望",
+      "icon": "heart",
+      "min": 0,
+      "max": 100,
+      "description": "对未来的信念，影响 NPC 态度和结局倾向"
+    },
+    "fear": {
+      "name": "恐惧",
+      "icon": "moon",
+      "min": 0,
+      "max": 100,
+      "description": "面对危险的心理压力，高恐惧会限制某些选项"
+    },
+    "trust": {
+      "name": "信任",
+      "icon": "handshake",
+      "min": 0,
+      "max": 100,
+      "description": "同志对你的信任，影响关键任务触发"
+    },
+    "support": {
+      "name": "支持度",
+      "icon": "star",
+      "min": 0,
+      "max": 100,
+      "description": "对革命的支持程度，影响历史分析的权重"
+    },
+    "leadership": {
+      "name": "领导力",
+      "icon": "crown",
+      "min": 0,
+      "max": 100,
+      "description": "领导能力，影响某些选项的可用性"
+    },
+    "reputation": {
+      "name": "名声",
+      "icon": "award",
+      "min": 0,
+      "max": 100,
+      "description": "在社会中的声望，影响 NPC 反应"
+    },
+    "food": {
+      "name": "粮食",
+      "icon": "bread",
+      "min": 0,
+      "max": 100,
+      "description": "战时资源，低粮食会触发特殊对话"
+    },
+    "weapon": {
+      "name": "武器",
+      "icon": "sword",
+      "min": 0,
+      "max": 100,
+      "description": "武装程度，影响战斗场景对白"
+    },
+    "alert": {
+      "name": "警戒",
+      "icon": "warning",
+      "min": 0,
+      "max": 100,
+      "description": "西班牙政府警戒等级，越高秘密任务越危险"
+    }
+  },
+
+  "relationships": {
+    "bonifacio": {
+      "name": "博尼法西奥",
+      "icon": "sword",
+      "max": 100,
+      "description": "Katipunan 创始人，你的革命导师"
+    },
+    "jacinto": {
+      "name": "雅辛托",
+      "icon": "book",
+      "max": 100,
+      "description": "Katipunan 智囊，Ideologue"
+    },
+    "aguinaldo": {
+      "name": "阿奎纳多",
+      "icon": "building",
+      "max": 100,
+      "description": "革命领袖，后来的总统"
+    },
+    "mother": {
+      "name": "母亲",
+      "icon": "user",
+      "max": 100,
+      "description": "你的家人，代表传统价值观"
+    },
+    "friend": {
+      "name": "朋友",
+      "icon": "users",
+      "max": 100,
+      "description": "你的同伴，一起成长的伙伴"
+    }
+  },
+
+  "items": {
+    "katipunan_password": {
+      "name": "Katipunan 密码",
+      "description": "加入组织的秘密密码"
+    },
+    "cedula": {
+      "name": "税证",
+      "description": "西班牙殖民政府颁发的人头税证明"
+    },
+    "letter": {
+      "name": "密信",
+      "description": "革命同志传递的秘密信件"
+    },
+    "kris": {
+      "name": "克力士短剑",
+      "description": "传统的菲律宾武器"
+    },
+    "map": {
+      "name": "地图",
+      "description": "菲律宾地形图"
+    }
+  }
+}
+

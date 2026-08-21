@@ -1,0 +1,378 @@
+const storyData = {
+  "scenes": [
+    {
+      "id": "prologue_01",
+      "chapter": "prologue",
+      "title": "马尼拉的清晨",
+      "year": 1892,
+      "location": "马尼拉",
+      "background": "assets/backgrounds/01_prologue_manila.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "1892年的马尼拉，清晨的阳光穿透薄雾，照在西班牙殖民者的白色建筑上。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "街道两旁，菲律宾平民匆匆走过，低垂着头，不敢与殖民者对视。"
+        },
+        {
+          "speaker": "student",
+          "name": "你",
+          "text": "今天老师又讲到了黎刹先生的小说《不许犯我》和《社会肿瘤》……他说，这些问题必须解决。"
+        },
+        {
+          "speaker": "friend",
+          "name": "你的朋友",
+          "text": "黎刹先生说得对，但我们能做什么呢？西班牙人的军队无处不在。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "你看着街头巡逻的西班牙士兵，心中涌起一股复杂的情绪。"
+        }
+      ],
+      "choices": [
+        {
+          "text": "继续研究民族主义思想",
+          "effects": { "hope": 5, "support": 5 },
+          "score": 60,
+          "next": "chapter1_01"
+        },
+        {
+          "text": "回到家中帮助父亲",
+          "effects": { "hope": 0, "support": 0 },
+          "score": 30,
+          "next": "chapter1_01"
+        },
+        {
+          "text": "去市场打听消息",
+          "effects": { "fear": 3, "reputation": 2 },
+          "score": 50,
+          "next": "chapter1_01"
+        }
+      ],
+      "historyPause": {
+        "trigger": true,
+        "event": "西班牙殖民统治",
+        "examPoints": ["2.4.2.1 东南亚沦为殖民地"],
+        "nextScene": "chapter1_01"
+      }
+    },
+    {
+      "id": "chapter1_01",
+      "chapter": 1,
+      "title": "黎刹的被捕",
+      "year": 1892,
+      "location": "马尼拉",
+      "background": "assets/backgrounds/03_rizal_arrest.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "7月6日，一个震惊菲律宾的消息传来——何塞·黎刹被捕了！"
+        },
+        {
+          "speaker": "newspaper",
+          "name": "报纸",
+          "text": "「黎刹先生因叛国罪被西班牙当局逮捕，将流放到达比丹（Dapitan）……」"
+        },
+        {
+          "speaker": "citizen",
+          "name": "路人",
+          "text": "黎刹只是写了书，为什么要抓他？"
+        },
+        {
+          "speaker": "narrator",
+          "text": "消息像野火一样蔓延。人们议论纷纷，有人愤怒，有人恐惧，有人沉默。"
+        }
+      ],
+      "choices": [
+        {
+          "text": "为黎刹的遭遇感到愤怒",
+          "effects": { "hope": 5, "support": 10, "fear": -5 },
+          "score": 65,
+          "next": "chapter1_02"
+        },
+        {
+          "text": "担心自己也会受到牵连",
+          "effects": { "fear": 10, "hope": -5 },
+          "score": 40,
+          "next": "chapter1_02"
+        },
+        {
+          "text": "想要寻找更多像黎刹一样的人",
+          "effects": { "support": 5, "leadership": 5 },
+          "score": 70,
+          "next": "chapter1_02"
+        }
+      ]
+    },
+    {
+      "id": "chapter1_02",
+      "chapter": 1,
+      "title": "Katipunan 的诞生",
+      "year": 1892,
+      "location": "巴希云",
+      "background": "assets/backgrounds/02_bonifacio_katipunan.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "黎刹被捕后几天，一个名叫安德烈斯·博尼法西奥的人开始秘密活动。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "他是一位印刷工人，身材矮小但目光坚定。他曾说：'我要为我的民族争取自由。'"
+        },
+        {
+          "speaker": "bonifacio",
+          "name": "Bonifacio",
+          "portrait": "assets/characters/bonifacio.png",
+          "text": "同胞们！西班牙人的压迫已经够久了。我们要团结起来，建立一个秘密组织——Katipunan！"
+        },
+        {
+          "speaker": "member",
+          "name": "成员",
+          "text": "Bonifacio 先生，我们该如何做？"
+        },
+        {
+          "speaker": "bonifacio",
+          "name": "Bonifacio",
+          "text": "我们要解放我们的祖国。但首先，我们需要更多像你这样的人加入。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "他看着你，等待你的回答。"
+        }
+      ],
+      "choices": [
+        {
+          "text": "立刻加入 Katipunan",
+          "effects": { "support": 15, "trust": 10, "alert": -5 },
+          "score": 90,
+          "items": ["katipunan_password"],
+          "next": "chapter2_01"
+        },
+        {
+          "text": "犹豫，想要了解更多",
+          "effects": { "fear": 5, "support": 5 },
+          "score": 55,
+          "next": "chapter2_01"
+        },
+        {
+          "text": "拒绝，保持距离",
+          "effects": { "fear": 10, "support": -5 },
+          "score": 25,
+          "next": "chapter2_01"
+        }
+      ],
+      "historyPause": {
+        "trigger": true,
+        "event": "Katipunan 成立",
+        "historyId": "katipunan_founding",
+        "examPoints": ["2.4.2.2 卡地普南武装斗争"],
+        "nextScene": "chapter2_01"
+      }
+    },
+    {
+      "id": "chapter2_01",
+      "chapter": 2,
+      "title": "秘密被发现",
+      "year": 1896,
+      "location": "巴林达安",
+      "background": "assets/backgrounds/04_cry_pugad_lawin.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "1896年8月，Katipunan 的秘密被一名成员的妻子意外泄露给西班牙人。"
+        },
+        {
+          "speaker": "jacinto",
+          "name": "雅辛托",
+          "portrait": "assets/characters/jacinto.png",
+          "text": "我们必须立即行动！西班牙人已经知道我们的存在了！"
+        },
+        {
+          "speaker": "bonifacio",
+          "name": "Bonifacio",
+          "text": "那就让他们知道吧！是时候发动革命了！"
+        },
+        {
+          "speaker": "narrator",
+          "text": "8月23日深夜，Katipunan 成员聚集在 Pugad Lawin 的一户人家。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "博尼法西奥拿起 cedula（税证），撕成了碎片。"
+        },
+        {
+          "speaker": "bonifacio",
+          "name": "Bonifacio",
+          "text": "这是革命的信号！撕裂你们的 cedula，喊出你们的口号——'Live Long the Philippines!' 菲律宾万岁！"
+        },
+        {
+          "speaker": "narrator",
+          "text": "人群中爆发出震天的呐喊声。这就是著名的「Cry of Pugad Lawin」——巴林达安之 Cry。"
+        }
+      ],
+      "choices": [
+        {
+          "text": "跟着大家一起撕碎税证",
+          "effects": { "support": 15, "hope": 10, "fear": -5 },
+          "score": 85,
+          "next": "chapter3_01"
+        },
+        {
+          "text": "犹豫着，但最终加入了",
+          "effects": { "support": 10, "fear": 5 },
+          "score": 65,
+          "next": "chapter3_01"
+        },
+        {
+          "text": "后退，选择旁观",
+          "effects": { "fear": 10, "support": -5 },
+          "score": 30,
+          "next": "chapter3_01"
+        }
+      ],
+      "historyPause": {
+        "trigger": true,
+        "event": "Cry of Pugad Lawin",
+        "historyId": "cry_event",
+        "examPoints": ["2.4.2.2 卡地普南武装斗争爆发"],
+        "nextScene": "chapter3_01"
+      }
+    },
+    {
+      "id": "chapter3_01",
+      "chapter": 3,
+      "title": "革命战争",
+      "year": 1896,
+      "location": "吕宋岛",
+      "background": "assets/backgrounds/05_battle_jungle.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "革命爆发后，菲律宾各地爆发起义。你作为一名战士，加入了战斗。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "但战争并不顺利……西班牙人的装备优于我们。"
+        }
+      ],
+      "choices": [
+        {
+          "text": "坚守阵地",
+          "effects": { "hope": 10, "weapon": -2 },
+          "score": 75,
+          "next": "chapter4_01"
+        },
+        {
+          "text": "撤退保存实力",
+          "effects": { "fear": 5, "support": -5, "food": 5 },
+          "score": 45,
+          "next": "chapter4_01"
+        }
+      ]
+    },
+    {
+      "id": "chapter4_01",
+      "chapter": 4,
+      "title": "Tejeros Convention",
+      "year": 1897,
+      "location": "特赫雷斯",
+      "background": "assets/backgrounds/06_tejeros_convention.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "1897年3月，Katipunan 内部出现分裂。Magdiwang 和 Magdalos 两个派系产生了分歧。"
+        }
+      ],
+      "choices": [],
+      "historyPause": {
+        "trigger": true,
+        "event": "Tejeros Convention",
+        "historyId": "tejeros_event",
+        "examPoints": ["2.4.2.3 菲律宾独立经过"],
+        "nextScene": "chapter5_01"
+      }
+    },
+    {
+      "id": "chapter5_01",
+      "chapter": 5,
+      "title": "Bonifacio 的审判",
+      "year": 1897,
+      "location": "纳卡西格",
+      "background": "assets/backgrounds/07_bonifacio_trial.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "一场不公正的审判正在上演……"
+        }
+      ],
+      "choices": [],
+      "historyPause": {
+        "trigger": true,
+        "event": "Bonifacio 审判",
+        "examPoints": ["2.4.2.3 菲律宾独立经过"],
+        "nextScene": "chapter6_01"
+      }
+    },
+    {
+      "id": "chapter6_01",
+      "chapter": 6,
+      "title": "独立宣言",
+      "year": 1898,
+      "location": "甲米地",
+      "background": "assets/backgrounds/08_independence_declaration.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "1898年6月12日，埃米利奥·阿奎纳多宣布菲律宾独立。"
+        }
+      ],
+      "choices": [],
+      "historyPause": {
+        "trigger": true,
+        "event": "菲律宾独立宣言",
+        "examPoints": ["2.4.2.3 菲律宾独立经过"],
+        "nextScene": "chapter7_01"
+      }
+    },
+    {
+      "id": "chapter7_01",
+      "chapter": 7,
+      "title": "美菲战争",
+      "year": 1899,
+      "location": "菲律宾",
+      "background": "assets/backgrounds/09_american_war.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "然而，独立的喜悦是短暂的……美国人来了。"
+        }
+      ],
+      "choices": [],
+      "historyPause": {
+        "trigger": true,
+        "event": "美菲战争",
+        "examPoints": ["2.4.2.3 菲律宾独立经过", "2.4.2.4 军人独裁的菲律宾"],
+        "nextScene": "ending"
+      }
+    },
+    {
+      "id": "ending",
+      "chapter": "ending",
+      "title": "革命报告",
+      "year": 1946,
+      "location": "菲律宾",
+      "background": "assets/backgrounds/01_prologue_manila.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "革命结束了，但菲律宾的道路依然漫长……"
+        }
+      ],
+      "choices": [],
+      "isEnding": true
+    }
+  ]
+}

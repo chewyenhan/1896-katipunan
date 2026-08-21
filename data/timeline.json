@@ -1,0 +1,112 @@
+const timelineData = {
+  "timeline": [
+    {
+      "year": 1521,
+      "event": "麦哲伦到达菲律宾",
+      "description": "葡萄牙探险家麦哲伦为西班牙发现菲律宾群岛。",
+      "examPoints": ["2.4.2.1"]
+    },
+    {
+      "year": 1571,
+      "event": "西班牙正式殖民菲律宾",
+      "description": "西班牙开始在菲律宾建立殖民统治，持续300多年。",
+      "examPoints": ["2.4.2.1"]
+    },
+    {
+      "year": 1892,
+      "event": "黎刹创立 La Liga Filipina",
+      "description": "何塞·黎刹回国后创立菲律宾联盟，主张改革。",
+      "examPoints": ["2.4.2.2"]
+    },
+    {
+      "year": 1892,
+      "event": "Katipunan 成立",
+      "description": "博尼法西奥创立秘密革命组织 Katipunan。",
+      "examPoints": ["2.4.2.2"]
+    },
+    {
+      "year": 1892,
+      "event": "黎刹被捕",
+      "description": "西班牙殖民政府逮捕黎刹，将他流放到达特曼。",
+      "examPoints": ["2.4.2.2"]
+    },
+    {
+      "year": 1896,
+      "event": "Cry of Pugad Lawin",
+      "description": "菲律宾革命正式爆发，Katipunan 成员撕毁税证。",
+      "examPoints": ["2.4.2.2"]
+    },
+    {
+      "year": 1896,
+      "event": "革命战争开始",
+      "description": "菲律宾各地爆发起义反对西班牙统治。",
+      "examPoints": ["2.4.2.3"]
+    },
+    {
+      "year": 1897,
+      "event": "Tejeros Convention",
+      "description": "革命派系会议，阿奎纳多当选总统，博尼法西奥被边缘化。",
+      "examPoints": ["2.4.2.3"]
+    },
+    {
+      "year": 1897,
+      "event": "博尼法西奥被处决",
+      "description": "博尼法西奥被指控叛国并被处决，成为革命的悲剧。",
+      "examPoints": ["2.4.2.3"]
+    },
+    {
+      "year": 1898,
+      "event": "美西战争",
+      "description": "美国战胜西班牙，获得菲律宾的控制权。",
+      "examPoints": ["2.4.2.3"]
+    },
+    {
+      "year": 1898,
+      "event": "菲律宾独立宣言",
+      "description": "6月12日，阿奎纳多在甲米地宣布菲律宾独立。",
+      "examPoints": ["2.4.2.3"]
+    },
+    {
+      "year": 1899,
+      "event": "美菲战争爆发",
+      "description": "菲律宾与美国之间的战争开始，菲律宾试图维护独立。",
+      "examPoints": ["2.4.2.3"]
+    },
+    {
+      "year": 1901,
+      "event": "阿奎纳多被俘",
+      "description": "菲律宾第一共和国总统阿奎纳多被美军俘虏，标志着独立运动的失败。",
+      "examPoints": ["2.4.2.4"]
+    },
+    {
+      "year": 1946,
+      "event": "菲律宾独立",
+      "description": "经过美国的长期殖民统治，菲律宾最终获得独立。",
+      "examPoints": ["2.4.2.4"]
+    }
+  ],
+
+  "examPoints": {
+    "2.4.2.1": {
+      "title": "东南亚沦为殖民地",
+      "content": "了解菲律宾如何成为西班牙殖民地，以及殖民统治的特点。",
+      "keyPoints": ["西班牙殖民开始于1571年", "殖民统治持续300多年", "天主教传播", "社会经济结构变化"]
+    },
+    "2.4.2.2": {
+      "title": "菲律宾宣传运动和卡地普南武装斗争",
+      "content": "学习 Katipunan 的成立背景和革命爆发原因。",
+      "keyPoints": ["黎刹的思想影响", "博尼法西奥创立 Katipunan", "1896年革命爆发", "Cry of Pugad Lawin"]
+    },
+    "2.4.2.3": {
+      "title": "印、菲、缅的独立经过",
+      "content": "了解菲律宾独立斗争的过程和结果。",
+      "keyPoints": ["Tejeros Convention", "博尼法西奥悲剧", "1898年独立宣言", "美菲战争", "独立未完全实现"]
+    },
+    "2.4.2.4": {
+      "title": "军人独裁的东南亚国家——菲律宾",
+      "content": "分析菲律宾后续的政治发展。",
+      "keyPoints": ["美国殖民统治", "军政府时期", "马科斯独裁", "人民力量革命"]
+    }
+  }
+}
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1896: Revolution of Choice — 选择与革命</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ui.css">
+  <link rel="stylesheet" href="css/animation.css">
+</head>
+<body>
+  <div id="game-container">
+    <!-- HUD -->
+    <div id="hud">
+      <div id="year-location">
+        <span id="year-display">1892</span>
+        <span id="location-display">马尼拉</span>
+      </div>
+      <div id="stats-bar">
+        <span class="stat" title="希望"><i class="icon">❤</i><span id="hope-val">50</span></span>
+        <span class="stat" title="恐惧"><i class="icon">🌙</i><span id="fear-val">30</span></span>
+        <span class="stat" title="信任"><i class="icon">🤝</i><span id="trust-val">40</span></span>
+        <span class="stat" title="支持度"><i class="icon">★</i><span id="support-val">50</span></span>
+        <span class="stat" title="警戒"><i class="icon">⚠</i><span id="alert-val">20</span></span>
+      </div>
+      <div id="hud-volume">
+        <button id="hud-volume-btn" class="vol-btn" title="静音/取消静音">🔊</button>
+        <input type="range" id="hud-volume-slider" min="0" max="100" value="50" title="音量">
+      </div>
+    </div>
+
+    <!-- Main Display -->
+    <div id="main-display">
+      <div id="background-layer">
+        <img id="bg-image" src="" alt="">
+      </div>
+      <div id="character-layer"></div>
+    </div>
+
+    <!-- Dialogue Box -->
+    <div id="dialogue-box">
+      <div id="speaker-info">
+        <img id="speaker-portrait" src="" alt="">
+        <span id="speaker-name"></span>
+      </div>
+      <div id="dialogue-text"></div>
+      <div id="continue-hint">▼ 点击继续</div>
+    </div>
+
+    <!-- Choices -->
+    <div id="choices-container" class="hidden">
+      <button class="choice-btn" data-index="0"></button>
+      <button class="choice-btn" data-index="1"></button>
+      <button class="choice-btn" data-index="2"></button>
+    </div>
+
+    <!-- History Pause Overlay -->
+    <div id="history-pause" class="overlay hidden">
+      <div class="history-content">
+        <h2>📜 历史档案</h2>
+        <div id="history-experience"></div>
+        <div id="history-facts"></div>
+        <div id="history-exam-points"></div>
+        <button id="continue-history">继续</button>
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <div id="menu-overlay" class="overlay hidden">
+      <div class="menu-content">
+        <h2>菜单</h2>
+        <button id="btn-continue">继续游戏</button>
+        <button id="btn-save">保存进度</button>
+        <button id="btn-load">读取进度</button>
+        <button id="btn-settings">设置</button>
+        <button id="btn-restart">重新开始</button>
+        <button id="btn-exit">退出</button>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div id="settings-overlay" class="overlay hidden">
+      <div class="settings-content">
+        <h2>设置</h2>
+        <label>
+          <input type="checkbox" id="tts-toggle" checked>
+          开启语音朗读
+        </label>
+        <label>
+          <input type="checkbox" id="music-toggle" checked>
+          背景音乐
+        </label>
+        <label>
+          <input type="range" id="volume-slider" min="0" max="100" value="50">
+          音量: <span id="volume-value">50</span>%
+        </label>
+        <button id="btn-close-settings">关闭</button>
+      </div>
+    </div>
+
+    <!-- Revolution Report -->
+    <div id="revolution-report" class="overlay hidden">
+      <div class="report-content">
+        <h2>🇵🇭 革命报告</h2>
+        <div id="report-score"></div>
+        <div id="report-stats"></div>
+        <div id="report-personality"></div>
+        <div id="report-exam-mapping"></div>
+        <div id="report-leaderboard"></div>
+        <div class="report-buttons">
+          <button id="btn-finish">完成</button>
+          <button id="btn-restart-report">重新开始</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Elements -->
+  <audio id="bgm-audio" loop preload="auto"></audio>
+  <audio id="voice-audio" preload="auto"></audio>
+  <audio id="sfx-click" src="assets/audio/sfx/sfx_click.mp3"></audio>
+  <audio id="sfx-choice" src="assets/audio/sfx/sfx_choice.mp3"></audio>
+
+  <script src="data/story.json"></script>
+  <script src="data/characters.json"></script>
+  <script src="data/timeline.json"></script>
+  <script src="data/glossary.json"></script>
+  <script src="data/variables.json"></script>
+  <script src="data/settings.json"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/tts.js"></script>
+  <script src="js/dialogue.js"></script>
+  <script src="js/choice.js"></script>
+  <script src="js/sceneManager.js"></script>
+  <script src="js/save.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

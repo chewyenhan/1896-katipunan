@@ -1,0 +1,115 @@
+const charactersData = {
+  "characters": [
+    {
+      "id": "bonifacio",
+      "name": "安德烈斯·博尼法西奥",
+      "nameEn": "Andres Bonifacio",
+      "portrait": "assets/characters/bonifacio.png",
+      "role": "Katipunan 创始人",
+      "birth": "1863年11月30日",
+      "death": "1897年5月10日",
+      "relationship": 30,
+      "description": "菲律宾革命的主要领袖之一，被称为'革命之父'。他创立了 Katipunan 秘密组织，领导了1896年的菲律宾革命。",
+      "historyCard": {
+        "birth": "1863年11月30日，马尼拉Tondo区",
+        "education": "自学成才，未接受正规教育",
+        "contribution": "创立 Katipunan，领导1896年革命",
+        "death_cause": "被阿奎纳多政府以叛国罪处决"
+      }
+    },
+    {
+      "id": "jacinto",
+      "name": "埃米利奥·雅辛托",
+      "nameEn": "Emilio Jacinto",
+      "portrait": "assets/characters/jacinto.png",
+      "role": "Katipunan 智囊",
+      "birth": "1875年12月15日",
+      "death": "1899年04月16日",
+      "relationship": 20,
+      "description": "年轻的 Katipunan 成员，被称为'革命的头脑'（Brains of the Katipunan）。他撰写了 Katipunan 的入门准则 Kartilya，是博尼法西奥最亲密的顾问。",
+      "historyCard": {
+        "birth": "1875年12月15日，马尼拉 Tondo 区",
+        "education": "圣胡安德莱特兰学院",
+        "contribution": "撰写 Kartilya 入门准则，任 Katipunan 秘书长",
+        "death_cause": "1899年马比特克战役负伤，后因疟疾病逝于 Laguna"
+      }
+    },
+    {
+      "id": "aguinaldo",
+      "name": "埃米利奥·阿奎纳多",
+      "nameEn": "Emilio Aguinaldo",
+      "portrait": "assets/characters/aguinaldo.png",
+      "role": "革命领袖",
+      "birth": "1869年03月22日",
+      "death": "1964年02月06日",
+      "relationship": 10,
+      "description": "菲律宾第一共和国总统，领导了菲律宾独立运动，但后来与美国妥协。",
+      "historyCard": {
+        "birth": "1869年，Cavite",
+        "education": "家庭教育",
+        "contribution": "宣布菲律宾独立，建立第一共和国",
+        "death_cause": "自然死亡"
+      }
+    },
+    {
+      "id": "rizal",
+      "name": "何塞·黎刹",
+      "nameEn": "Jose Rizal",
+      "portrait": "assets/characters/rizal.png",
+      "role": "民族英雄",
+      "birth": "1861年06月19日",
+      "death": "1896年12月30日",
+      "relationship": 0,
+      "description": "菲律宾的民族英雄，作家，思想家。他的小说激发了菲律宾的民族主义运动。",
+      "historyCard": {
+        "birth": "1861年，Calamba, Laguna",
+        "education": "圣托马斯大学，马德里大学",
+        "contribution": "创作《不许犯我》《社会肿瘤》，推动改革运动",
+        "death_cause": "被西班牙殖民政府枪决"
+      }
+    },
+    {
+      "id": "mother",
+      "name": "母亲",
+      "nameEn": "Mother",
+      "portrait": "",
+      "role": "家庭成员",
+      "relationship": 50,
+      "description": "玩家的母亲，代表家庭和传统价值观。"
+    },
+    {
+      "id": "friend",
+      "name": "朋友",
+      "nameEn": "Friend",
+      "portrait": "",
+      "role": "同伴",
+      "relationship": 40,
+      "description": "玩家的童年玩伴，一起成长的朋友。"
+    }
+  ],
+
+  "historyCards": {
+    "katipunan_founding": {
+      "title": "Katipunan 的成立",
+      "date": "1892年7月7日",
+      "location": "马尼拉巴希云区",
+      "content": "Katipunan（全称：Katipunan ng mga Anak ng Bayan，民族之子协会）是由安德烈斯·博尼法西奥创立的秘密革命组织。\n\n成立背景：\n- 黎刹因《不许犯我》等著作被西班牙当局视为威胁\n- 菲律宾知识分子受到欧洲启蒙思想影响\n- 西班牙殖民政府的压迫政策激起民愤\n\nKatipunan 的目标：\n- 通过武装斗争争取菲律宾独立\n- 建立独立的菲律宾共和国\n\n特点：\n- 采用三级会员制度\n- 使用秘密密码和象征符号\n- 成员宣誓效忠祖国\n\n考纲对应：2.4.2.2 菲律宾宣传运动和卡地普南武装斗争",
+      "examPoints": ["2.4.2.2"]
+    },
+    "cry_event": {
+      "title": "Cry of Pugad Lawin",
+      "date": "1896年8月23日",
+      "location": "Pugad Lawin, Balintawak",
+      "content": "Cry of Pugad Lawin（巴林达安之 Cry）是菲律宾革命正式爆发的标志事件。\n\n事件经过：\n- Katipunan 的秘密被发现后，成员们聚集在 Pugad Lawin\n- 博尼法西奥号召大家撕碎 cedula（西班牙殖民政府颁发的人头税证明）\n- 这一行为象征着与西班牙殖民统治的彻底决裂\n\n历史意义：\n- 标志着菲律宾革命的正式开始\n- 鼓舞了更多菲律宾人加入革命\n- 成为菲律宾重要的历史纪念日\n\n考纲对应：2.4.2.2 卡地普南武装斗争爆发",
+      "examPoints": ["2.4.2.2"]
+    },
+    "tejeros_event": {
+      "title": "Tejeros Convention",
+      "date": "1897年3月22日",
+      "location": "Tejeros, Cavite",
+      "content": "Tejeros Convention 是菲律宾革命历史上的重要转折点。\n\n背景：\n- Magdiwang 和 Magdalos 两个 Katipunan 派系产生分歧\n- 需要在军事领导权上达成一致\n\n过程：\n- 召开大会选举临时政府\n- 阿奎纳多当选总统\n- 博尼法西奥质疑选举的合法性\n\n结果：\n- 博尼法西奥派系被边缘化\n- 导致了后来的悲剧\n\n历史意义：\n- 革命力量出现分裂\n- 为博尼法西的悲剧埋下伏笔\n\n考纲对应：2.4.2.3 菲律宾独立经过",
+      "examPoints": ["2.4.2.3"]
+    }
+  }
+}
+

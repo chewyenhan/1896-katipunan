@@ -1,0 +1,85 @@
+const glossaryData = {
+  "terms": [
+    {
+      "id": "katipunan",
+      "term": "Katipunan",
+      "termEn": "Katipunan (KKK)",
+      "definition": "全称Katipunan ng mga Anak ng Bayan（民族之子协会），由安德烈斯·博尼法西奥于1892年创立的秘密革命组织。目标是争取菲律宾独立。",
+      "examPoints": ["2.4.2.2"],
+      "image": ""
+    },
+    {
+      "id": "cedula",
+      "term": "Cedula",
+      "termEn": "Cedula de Persona",
+      "definition": "西班牙殖民政府颁发的人头税证明，每个菲律宾成年人必须持有。撕碎 cedula 成为革命的象征性行动。",
+      "examPoints": ["2.4.2.2"],
+      "image": ""
+    },
+    {
+      "id": "rizal",
+      "term": "何塞·黎刹",
+      "termEn": "Jose Rizal",
+      "definition": "菲律宾民族英雄，作家、医生。创作《不许犯我》和《社会肿瘤》，揭露殖民统治的黑暗。虽然不支持武装革命，但他的思想激发了民族主义。1896年被处决。",
+      "examPoints": ["2.4.2.2"],
+      "image": ""
+    },
+    {
+      "id": "bonifacio",
+      "term": "安德烈斯·博尼法西奥",
+      "termEn": "Andres Bonifacio",
+      "definition": "Katipunan 创始人，被称为'革命之父'。领导1896年革命爆发。后因与阿奎纳多的权力斗争被处决。",
+      "examPoints": ["2.4.2.2", "2.4.2.3"],
+      "image": ""
+    },
+    {
+      "id": "aguinaldo",
+      "term": "埃米利奥·阿奎纳多",
+      "termEn": "Emilio Aguinaldo",
+      "definition": "菲律宾革命领袖，第一共和国总统。在 Tejeros Convention 中击败博尼法西奥派系。后与美国合作，但菲律宾最终被美国殖民。",
+      "examPoints": ["2.4.2.3", "2.4.2.4"],
+      "image": ""
+    },
+    {
+      "id": "cry_of_pugad_lawin",
+      "term": "Cry of Pugad Lawin",
+      "termEn": "Cry of Pugad Lawin",
+      "definition": "1896年8月23日，Katipunan 成员在 Pugad Lawin 撕碎 cedula，标志着菲律宾革命正式爆发。",
+      "examPoints": ["2.4.2.2"],
+      "image": ""
+    },
+    {
+      "id": "tejeros_convention",
+      "term": "Tejeros Convention",
+      "termEn": "Tejeros Convention",
+      "definition": "1897年3月22日召开的革命派系会议，阿奎纳多当选总统，博尼法西奥被边缘化，导致后来的悲剧。",
+      "examPoints": ["2.4.2.3"],
+      "image": ""
+    },
+    {
+      "id": "malolos_constitution",
+      "term": "马洛洛斯宪法",
+      "termEn": "Malolos Constitution",
+      "definition": "1899年颁布的菲律宾第一部宪法，建立菲律宾第一共和国。",
+      "examPoints": ["2.4.2.3"],
+      "image": ""
+    },
+    {
+      "id": "philippine_american_war",
+      "term": "美菲战争",
+      "termEn": "Philippine-American War",
+      "definition": "1899-1902年菲律宾与美国之间的战争，菲律宾试图维护独立但失败，最终成为美国殖民地。",
+      "examPoints": ["2.4.2.3", "2.4.2.4"],
+      "image": ""
+    },
+    {
+      "id": "magdiwang_magdalos",
+      "term": "Magdiwang 与 Magdalos",
+      "termEn": "Magdiwang and Magdalos",
+      "definition": "Katipunan 内部的两个派系。Magdiwang 支持博尼法西奥，Magdalos 支持阿奎纳多。两派的分裂导致了革命力量的削弱。",
+      "examPoints": ["2.4.2.3"],
+      "image": ""
+    }
+  ]
+}
+

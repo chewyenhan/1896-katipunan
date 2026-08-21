@@ -1,0 +1,33 @@
+const settingsData = {
+  "version": "1.0.0",
+  "gameTitle": "1896: Revolution of Choice",
+  "gameTitleZh": "选择与革命",
+  "language": "zh-CN",
+  "settings": {
+    "defaultVolume": 50,
+    "ttsEnabled": true,
+    "musicEnabled": true,
+    "autoSave": true,
+    "saveInterval": 60000
+  },
+  "tts": {
+    "enabled": true,
+    "language": "zh-CN",
+    "pitch": 1.0,
+    "rate": 0.9
+  },
+  "music": {
+    "enabled": true,
+    "volume": 0.3
+  },
+  "ai": {
+    "endpoint": "https://1896-katipunan-ai.chewyenhan.workers.dev/api/1896/analyze",
+    "model": "gemini-2.5-flash",
+    "timeout": 30000
+  },
+  "cloud": {
+    "baseUrl": "https://1896-katipunan-ai.chewyenhan.workers.dev/api/1896",
+    "saveEnabled": true
+  }
+}
+
