@@ -71,8 +71,8 @@ class Game {
 
     document.getElementById('btn-start-game').addEventListener('click', () => {
       const name = document.getElementById('player-name-input').value.trim() || '革命者';
-      saver.startNewGame(); // 开一个新存档槽
       game.state.playerName = name;
+      saver.startNewGame(); // 开一个新存档槽（此时名字已写入，记录带正确姓名）
       intro.remove();
       sceneManager.loadScene('prologue_01');
     });

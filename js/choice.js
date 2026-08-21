@@ -117,6 +117,9 @@ class ChoiceSystem {
       }
     }
 
+    // 自动保存（含选择类场景——loadScene 的尾部保存对有选择的场景不会执行）
+    game.saveState();
+
     this.isProcessing = false;
   }
 
@@ -160,6 +163,7 @@ class ChoiceSystem {
       // 继续游戏
       if (pauseConfig.nextScene) {
         sceneManager.goToScene(pauseConfig.nextScene);
+        game.saveState(); // 跳到下一场景后立即保存
       }
     };
   }
