@@ -22,7 +22,7 @@ const settingsData = {
   },
   "ai": {
     "endpoint": "https://1896-katipunan-ai.chewyenhan.workers.dev/api/1896/analyze",
-    "model": "gemini-2.5-flash",
+    "model": "gemini-3.5-flash-lite",
     "timeout": 30000
   },
   "cloud": {
