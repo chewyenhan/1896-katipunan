@@ -612,6 +612,28 @@ body {
   color: var(--gold-light);
 }
 
+.lb-del {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s;
+  padding: 0;
+}
+
+.lb-del:hover {
+  opacity: 1;
+  color: #ff7b7b;
+  background: rgba(0, 0, 0, 0.6);
+}
+
 .lb-mine, .lb-status, .lb-empty {
   text-align: center;
   color: var(--text-secondary);

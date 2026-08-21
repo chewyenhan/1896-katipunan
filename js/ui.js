@@ -419,32 +419,75 @@ class UISystem {
         }),
       });
       await res.json();
-
-      const lbRes = await fetch(`${base}/leaderboard`);
-      const lb = await lbRes.json();
-      const rows = (lb && lb.leaderboard) || [];
-      const medal = ['🥇', '🥈', '🥉'];
-
-      const rowsHTML = rows.slice(0, 10).map((e, i) => `
-        <div class="lb-row ${e.id === saver.getPlayerId() ? 'lb-me' : ''}">
-          <span class="lb-rank">${medal[i] || (i + 1)}</span>
-          <span class="lb-name">${this.escapeHtml(e.name)}</span>
-          <span class="lb-personality">${this.escapeHtml(e.personality || '')}</span>
-          <span class="lb-score">${e.score}</span>
-        </div>
-      `).join('');
-
-      const myIndex = rows.findIndex(e => e.id === saver.getPlayerId());
-      const myRank = myIndex >= 0 ? myIndex + 1 : '-';
-
-      box.innerHTML = `
-        <h3>🏆 革命排行榜（前 10）</h3>
-        <div class="lb-list">${rowsHTML || '<p class="lb-empty">还没有人上榜，快来争第一！</p>'}</div>
-        <p class="lb-mine">${myRank === '-' ? '我的成绩已保存到云端' : `我的排名：#${myRank}`}</p>
-      `;
+      await this.loadLeaderboard();
     } catch (e) {
       box.innerHTML = `<p class="lb-status">云端暂不可用，成绩仅保存在本地</p>`;
     }
+  }
+
+  // 拉取并渲染排行榜（提交后 / 删除记录后都走这里）
+  async loadLeaderboard() {
+    const base = (settingsData && settingsData.cloud && settingsData.cloud.baseUrl) || '';
+    const box = document.getElementById('report-leaderboard');
+    if (!base) {
+      box.innerHTML = `<p class="lb-status">云端排行榜未启用</p>`;
+      return;
+    }
+    const lbRes = await fetch(`${base}/leaderboard`);
+    const lb = await lbRes.json();
+    const rows = (lb && lb.leaderboard) || [];
+    const medal = ['🥇', '🥈', '🥉'];
+    const me = saver.getPlayerId();
+
+    const rowsHTML = rows.slice(0, 10).map((e, i) => `
+      <div class="lb-row ${e.id === me ? 'lb-me' : ''}">
+        <span class="lb-rank">${medal[i] || (i + 1)}</span>
+        <span class="lb-name">${this.escapeHtml(e.name)}</span>
+        <span class="lb-personality">${this.escapeHtml(e.personality || '')}</span>
+        <span class="lb-score">${e.score}</span>
+        <button class="lb-del" data-id="${this.escapeHtml(e.id)}" data-name="${this.escapeHtml(e.name)}" title="删除记录">×</button>
+      </div>
+    `).join('');
+
+    const myIndex = rows.findIndex(e => e.id === me);
+    const myRank = myIndex >= 0 ? myIndex + 1 : '-';
+
+    box.innerHTML = `
+      <h3>🏆 革命排行榜（前 10）</h3>
+      <div class="lb-list">${rowsHTML || '<p class="lb-empty">还没有人上榜，快来争第一！</p>'}</div>
+      <p class="lb-mine">${myRank === '-' ? '我的成绩已保存到云端' : `我的排名：#${myRank}`}</p>
+    `;
+    this.bindLeaderboardDelete(box, base, me);
+  }
+
+  // 删除按钮：删自己的记录免密码（playerId 随机不可猜）；删别人的需管理密码（教师用）
+  bindLeaderboardDelete(box, base, me) {
+    box.querySelectorAll('.lb-del').forEach(btn => {
+      btn.onclick = async () => {
+        const id = btn.dataset.id;
+        const name = btn.dataset.name;
+        let url = `${base}/leaderboard?id=${encodeURIComponent(id)}`;
+        if (id === me) {
+          if (!confirm(`确定删除「${name}」的排行榜记录吗？`)) return;
+        } else {
+          const pwd = prompt(`删除「${name}」的记录需要管理密码（教师用）：`);
+          if (!pwd) return;
+          url += `&admin=${encodeURIComponent(pwd)}`;
+        }
+        try {
+          const res = await fetch(url, { method: 'DELETE' });
+          const data = await res.json();
+          if (data.ok) {
+            if (data.removed === 0) alert('该记录不存在');
+            else await this.loadLeaderboard();
+          } else {
+            alert(data.error || '删除失败');
+          }
+        } catch (e) {
+          alert('网络错误，删除失败');
+        }
+      };
+    });
   }
 
   // HTML 转义（排行榜姓名防注入）
