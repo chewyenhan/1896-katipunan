@@ -240,6 +240,92 @@ class UISystem {
     return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   }
 
+  // 结局动画：按人格播放专属片尾（可跳过；视频失败回退静帧+Ken Burns）
+  playEndingVideo() {
+    const overlay = document.getElementById('ending-video-overlay');
+    const video = document.getElementById('ending-video');
+    const fallback = document.getElementById('ending-video-fallback');
+    const titleEl = document.getElementById('ending-video-title');
+    const subEl = document.getElementById('ending-video-subtitle');
+    const skipBtn = document.getElementById('btn-skip-ending');
+
+    const META = {
+      courage:         { mp4: 'ending_courage.mp4',    frame: 'frame_courage.jpg',    title: '勇敢的战士',         sub: '以火为旗，以身为盾。' },
+      loyalty:         { mp4: 'ending_loyalty.mp4',    frame: 'frame_loyalty.jpg',    title: '忠诚的同志',         sub: '歃血为盟，至死不渝。' },
+      politicalSense:  { mp4: 'ending_political.mp4',  frame: 'frame_political.jpg',  title: '精明的政治家',       sub: '博弈之间，家国为先。' },
+      riskTaking:      { mp4: 'ending_risk.mp4',       frame: 'frame_risk.jpg',       title: '冒险的革命者',       sub: '明知山有虎，偏向虎山行。' },
+      compassion:      { mp4: 'ending_compassion.mp4', frame: 'frame_compassion.jpg', title: '仁慈的理想主义者',   sub: '为苍生请命，以纸笔为剑。' },
+      leadership:      { mp4: 'ending_leadership.mp4', frame: 'frame_leadership.jpg', title: '天生的领袖',         sub: '振臂一呼，应者云集。' },
+    };
+
+    // 最高属性决定人格
+    const report = game.getReportData();
+    const maxStat = Object.entries(report).reduce((a, b) => a[1] > b[1] ? a : b)[0];
+    const meta = META[maxStat] || META.courage;
+    const vidUrl = `assets/endings/${meta.mp4}`;
+    const frameUrl = `assets/endings/${meta.frame}`;
+
+    return new Promise((resolve) => {
+      let done = false;
+      let fallbackTimer = null;
+      let playTimeout = null;
+
+      const finish = () => {
+        if (done) return;
+        done = true;
+        clearTimeout(playTimeout);
+        clearTimeout(fallbackTimer);
+        video.pause();
+        video.removeAttribute('src'); // 释放内存
+        video.load();
+        fallback.classList.add('hidden');
+        video.classList.remove('hidden');
+        overlay.classList.add('hidden');
+        resolve();
+      };
+
+      const fallbackToFrame = () => {
+        if (done) return;
+        video.classList.add('hidden');
+        fallback.src = frameUrl;
+        fallback.classList.remove('hidden');
+        // 静帧模式 10 秒后自动进入结算（等同动画时长）
+        fallbackTimer = setTimeout(finish, 10000);
+      };
+
+      overlay.classList.remove('hidden');
+      titleEl.textContent = meta.title;
+      this.typeText(subEl, meta.sub);
+
+      skipBtn.onclick = finish;
+      video.onended = finish;
+      video.onerror = fallbackToFrame;
+      video.onplaying = () => clearTimeout(playTimeout);
+
+      video.src = vidUrl;
+      const p = video.play();
+      if (p && p.catch) p.catch(fallbackToFrame);
+      // 5 秒内未开始播放 → 静帧回退（onplaying 会清掉这个 timeout）
+      playTimeout = setTimeout(() => {
+        if (!done && video.currentTime === 0) fallbackToFrame();
+      }, 5000);
+    });
+  }
+
+  // 打字机效果（副标题）
+  typeText(el, text) {
+    el.textContent = '';
+    let i = 0;
+    el.classList.add('type-cursor');
+    const iv = setInterval(() => {
+      el.textContent = text.slice(0, ++i);
+      if (i >= text.length) {
+        clearInterval(iv);
+        el.classList.remove('type-cursor');
+      }
+    }, 60);
+  }
+
   // 显示革命报告
   showRevolutionReport() {
     const report = game.getReportData();

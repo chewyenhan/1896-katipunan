@@ -63,7 +63,8 @@ class SceneManager {
       // 无选择但有历史暂停（如第 4-7 章剧情推进）
       await choices.triggerHistoryPause(scene.historyPause);
     } else if (scene.isEnding) {
-      // 结局场景 → 革命报告
+      // 结局动画（按人格播放专属片尾，可跳过，失败回退静帧）→ 革命报告
+      await ui.playEndingVideo();
       gameInstance.end();
     }
 

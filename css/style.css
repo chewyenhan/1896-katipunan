@@ -781,3 +781,89 @@ body {
     font-size: 1.2rem;
   }
 }
+
+/* ===== 结局动画播放器 ===== */
+.ending-video-content {
+  position: relative;
+  width: min(1100px, 92vw);
+  aspect-ratio: 16 / 9;
+  max-height: 80vh;
+  border: 3px solid var(--gold);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+}
+
+#ending-video,
+#ending-video-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 静帧回退：Ken Burns 缓慢运镜 */
+#ending-video-fallback:not(.hidden) {
+  animation: kenburns 14s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns {
+  from { transform: scale(1) translateX(0); }
+  to { transform: scale(1.12) translateX(-2.5%); }
+}
+
+#ending-video-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18%;
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--gold);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.15em;
+}
+
+#ending-video-subtitle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9%;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #f5e6c8;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+}
+
+.type-cursor::after {
+  content: '▌';
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+#btn-skip-ending {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  z-index: 5;
+  padding: 8px 18px;
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(3px);
+}
+
+#btn-skip-ending:hover {
+  background: var(--gold);
+  color: var(--sepia-dark);
+}
