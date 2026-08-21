@@ -20,11 +20,6 @@ const settingsData = {
     "enabled": true,
     "volume": 0.3
   },
-  "ai": {
-    "endpoint": "https://1896-katipunan-ai.chewyenhan.workers.dev/api/1896/analyze",
-    "model": "gemini-3.5-flash-lite",
-    "timeout": 30000
-  },
   "cloud": {
     "baseUrl": "https://1896-katipunan-ai.chewyenhan.workers.dev/api/1896",
     "saveEnabled": true
