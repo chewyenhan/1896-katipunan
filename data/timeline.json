@@ -14,26 +14,26 @@ const timelineData = {
     },
     {
       "year": 1892,
-      "event": "黎刹创立 La Liga Filipina",
-      "description": "何塞·黎刹回国后创立菲律宾联盟，主张改革。",
+      "event": "黎萨创立 菲律宾同盟（La Liga Filipina）",
+      "description": "黎萨回国后创立菲律宾同盟，主张改革。",
       "examPoints": ["2.4.2.2"]
     },
     {
       "year": 1892,
-      "event": "Katipunan 成立",
-      "description": "博尼法西奥创立秘密革命组织 Katipunan。",
+      "event": "卡地普南 成立",
+      "description": "波尼法寿创立秘密革命组织 卡地普南。",
       "examPoints": ["2.4.2.2"]
     },
     {
       "year": 1892,
-      "event": "黎刹被捕",
-      "description": "西班牙殖民政府逮捕黎刹，将他流放到达特曼。",
+      "event": "黎萨被捕",
+      "description": "西班牙殖民政府逮捕黎萨，将他流放到达特曼。",
       "examPoints": ["2.4.2.2"]
     },
     {
       "year": 1896,
       "event": "Cry of Pugad Lawin",
-      "description": "菲律宾革命正式爆发，Katipunan 成员撕毁税证。",
+      "description": "菲律宾革命正式爆发，卡地普南 成员撕毁税证。",
       "examPoints": ["2.4.2.2"]
     },
     {
@@ -45,25 +45,31 @@ const timelineData = {
     {
       "year": 1897,
       "event": "Tejeros Convention",
-      "description": "革命派系会议，阿奎纳多当选总统，博尼法西奥被边缘化。",
+      "description": "革命派系会议，阿谨纳度当选总统，波尼法寿被边缘化。",
       "examPoints": ["2.4.2.3"]
     },
     {
       "year": 1897,
-      "event": "博尼法西奥被处决",
-      "description": "博尼法西奥被指控叛国并被处决，成为革命的悲剧。",
+      "event": "波尼法寿被处决",
+      "description": "波尼法寿被指控叛国并被处决，成为革命的悲剧。",
+      "examPoints": ["2.4.2.3"]
+    },
+    {
+      "year": 1897,
+      "event": "边那巴多和约",
+      "description": "新领导人阿谨纳度与西班牙殖民政府和谈，放下武器。西班牙答应不追究责任、给予赔偿并承诺政治改革，但并未兑现承诺，革命再起。",
       "examPoints": ["2.4.2.3"]
     },
     {
       "year": 1898,
       "event": "美西战争",
-      "description": "美国战胜西班牙，获得菲律宾的控制权。",
+      "description": "美国与西班牙因古巴问题爆发战争，美国与卡地普南合作打败西班牙。美西签署《巴黎条约》，菲律宾成为美国殖民地。",
       "examPoints": ["2.4.2.3"]
     },
     {
       "year": 1898,
       "event": "菲律宾独立宣言",
-      "description": "6月12日，阿奎纳多在甲米地宣布菲律宾独立。",
+      "description": "6月12日，阿谨纳度在甲米地宣布菲律宾独立。",
       "examPoints": ["2.4.2.3"]
     },
     {
@@ -74,8 +80,8 @@ const timelineData = {
     },
     {
       "year": 1901,
-      "event": "阿奎纳多被俘",
-      "description": "菲律宾第一共和国总统阿奎纳多被美军俘虏，标志着独立运动的失败。",
+      "event": "阿谨纳度被俘",
+      "description": "菲律宾第一共和国总统阿谨纳度被美军俘虏，标志着独立运动的失败。",
       "examPoints": ["2.4.2.4"]
     },
     {
@@ -94,13 +100,13 @@ const timelineData = {
     },
     "2.4.2.2": {
       "title": "菲律宾宣传运动和卡地普南武装斗争",
-      "content": "学习 Katipunan 的成立背景和革命爆发原因。",
-      "keyPoints": ["黎刹的思想影响", "博尼法西奥创立 Katipunan", "1896年革命爆发", "Cry of Pugad Lawin"]
+      "content": "学习 卡地普南 的成立背景和革命爆发原因。",
+      "keyPoints": ["黎萨的思想影响", "波尼法寿创立 卡地普南", "1896年革命爆发", "Cry of Pugad Lawin"]
     },
     "2.4.2.3": {
       "title": "印、菲、缅的独立经过",
       "content": "了解菲律宾独立斗争的过程和结果。",
-      "keyPoints": ["Tejeros Convention", "博尼法西奥悲剧", "1898年独立宣言", "美菲战争", "独立未完全实现"]
+      "keyPoints": ["Tejeros Convention", "波尼法寿悲剧", "1898年独立宣言", "美菲战争", "独立未完全实现"]
     },
     "2.4.2.4": {
       "title": "军人独裁的东南亚国家——菲律宾",

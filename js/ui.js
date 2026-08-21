@@ -17,15 +17,17 @@ class UISystem {
     });
 
     document.getElementById('btn-save').addEventListener('click', () => {
-      saver.save();
+      if (saver.save()) {
+        this.closeMenu();
+        saver.showNotification('进度已保存');
+      } else {
+        saver.showNotification('保存失败', 'error');
+      }
     });
 
-    document.getElementById('btn-load').addEventListener('click', async () => {
-      // 云端优先，云端没有才读本地
-      const cloudOk = await saver.loadFromCloud();
-      if (!cloudOk && !saver.load()) return;
+    document.getElementById('btn-load').addEventListener('click', () => {
       this.closeMenu();
-      sceneManager.loadScene(game.state.currentScene);
+      this.openSaveSelect();
     });
 
     document.getElementById('btn-settings').addEventListener('click', () => {
@@ -49,6 +51,10 @@ class UISystem {
     // 设置按钮
     document.getElementById('btn-close-settings').addEventListener('click', () => {
       this.closeSettings();
+    });
+
+    document.getElementById('btn-close-save-list').addEventListener('click', () => {
+      this.closeSaveSelect();
     });
 
     document.getElementById('tts-toggle').addEventListener('change', (e) => {
@@ -111,7 +117,9 @@ class UISystem {
     // ESC 键
     document.addEventListener('keydown', (e) => {
       if (e.code === 'Escape') {
-        if (!this.menuOverlay.classList.contains('hidden')) {
+        if (this.saveSelect && !this.saveSelect.classList.contains('hidden')) {
+          this.closeSaveSelect();
+        } else if (!this.menuOverlay.classList.contains('hidden')) {
           this.closeMenu();
         } else if (!this.settingsOverlay.classList.contains('hidden')) {
           this.closeSettings();
@@ -156,6 +164,80 @@ class UISystem {
   // 关闭设置
   closeSettings() {
     this.settingsOverlay.classList.add('hidden');
+  }
+
+  // ===== 存档选择面板 =====
+  async openSaveSelect() {
+    this.saveSelect = this.saveSelect || document.getElementById('save-select-overlay');
+    const listBox = document.getElementById('save-list');
+    listBox.innerHTML = `<p class="save-status">正在读取存档…</p>`;
+    this.saveSelect.classList.remove('hidden');
+    await saver.loadFromCloud(); // 先合并云端记录
+    this.renderSaveList();
+  }
+
+  renderSaveList() {
+    const records = saver.getRecords();
+    const listBox = document.getElementById('save-list');
+    if (!listBox) return;
+
+    if (!records.length) {
+      listBox.innerHTML = `<p class="save-empty">还没有存档，去开始一段革命吧！</p>`;
+      return;
+    }
+
+    listBox.innerHTML = records.map(rec => {
+      const scene = storyData.scenes.find(s => s.id === rec.currentScene);
+      const title = scene ? `${this.chapterLabel(scene.chapter)} · ${scene.title}` : rec.currentScene;
+      const isCurrent = rec.saveId === saver.getCurrentSaveId();
+      return `
+        <div class="save-row ${isCurrent ? 'save-current' : ''}">
+          <div class="save-info">
+            <div class="save-name">${this.escapeHtml(rec.playerName)}<span class="save-chapter">${title}</span></div>
+            <div class="save-meta">❤ 希望 ${rec.hope} · ${this.formatDate(rec.updatedAt)}${isCurrent ? ' · 当前' : ''}</div>
+          </div>
+          <div class="save-actions">
+            <button class="save-enter" data-save-id="${rec.saveId}">进入</button>
+            <button class="save-delete" data-save-id="${rec.saveId}">删除</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    listBox.querySelectorAll('.save-enter').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const ok = await saver.selectSave(btn.dataset.saveId);
+        if (!ok) { saver.showNotification('载入失败', 'error'); return; }
+        this.saveSelect.classList.add('hidden');
+        sceneManager.loadScene(game.state.currentScene);
+      });
+    });
+
+    listBox.querySelectorAll('.save-delete').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const rec = records.find(r => r.saveId === btn.dataset.saveId);
+        if (!confirm(`确定删除「${rec ? rec.playerName : '这段'}」的进度吗？删除后不可恢复。`)) return;
+        await saver.deleteSave(btn.dataset.saveId);
+        this.renderSaveList();
+      });
+    });
+  }
+
+  closeSaveSelect() {
+    if (this.saveSelect) this.saveSelect.classList.add('hidden');
+  }
+
+  chapterLabel(ch) {
+    if (ch === 'prologue') return '序章';
+    if (ch === 'ending') return '终章';
+    return `第${ch}章`;
+  }
+
+  formatDate(ts) {
+    if (!ts) return '';
+    const d = new Date(ts);
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
   }
 
   // 显示革命报告

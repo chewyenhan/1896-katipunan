@@ -12,7 +12,10 @@ class Game {
     this.isRunning = true;
     this.startTime = Date.now();
 
-    // 检查是否有存档
+    // 合并云端记录（静默，失败则只用本地）
+    await saver.loadFromCloud();
+
+    // 检查是否有存档（本地或云端）
     if (saver.hasSave()) {
       await this.showStartMenu();
     } else {
@@ -29,17 +32,15 @@ class Game {
         <h1>🇵🇭 1896: Revolution of Choice</h1>
         <h2>选择与革命</h2>
         <p>菲律宾独立运动沉浸体验</p>
-        <button id="btn-continue-save">继续上次的进度</button>
+        <button id="btn-pick-save">📜 选择进度（${saver.getRecords().length}）</button>
         <button id="btn-new-game">新的冒险</button>
       </div>
     `;
     document.body.appendChild(menu);
 
-    document.getElementById('btn-continue-save').addEventListener('click', async () => {
+    document.getElementById('btn-pick-save').addEventListener('click', () => {
       menu.remove();
-      const cloudOk = await saver.loadFromCloud();
-      if (!cloudOk) saver.load();
-      sceneManager.loadScene(game.state.currentScene);
+      ui.openSaveSelect();
     });
 
     document.getElementById('btn-new-game').addEventListener('click', () => {
@@ -70,6 +71,7 @@ class Game {
 
     document.getElementById('btn-start-game').addEventListener('click', () => {
       const name = document.getElementById('player-name-input').value.trim() || '革命者';
+      saver.startNewGame(); // 开一个新存档槽
       game.state.playerName = name;
       intro.remove();
       sceneManager.loadScene('prologue_01');

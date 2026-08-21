@@ -263,7 +263,8 @@ body {
 .history-content,
 .menu-content,
 .settings-content,
-.report-content {
+.report-content,
+.save-select-content {
   background: linear-gradient(135deg, var(--sepia-dark), var(--sepia-mid));
   border: 3px solid var(--gold);
   border-radius: 15px;
@@ -277,7 +278,8 @@ body {
 .history-content h2,
 .menu-content h2,
 .settings-content h2,
-.report-content h2 {
+.report-content h2,
+.save-select-content h2 {
   color: var(--gold);
   margin-bottom: 20px;
   text-align: center;
@@ -295,7 +297,8 @@ body {
 .history-content button,
 .menu-content button,
 .settings-content button,
-.report-content button {
+.report-content button,
+.save-select-content > button {
   display: block;
   width: 100%;
   margin-top: 20px;
@@ -313,9 +316,106 @@ body {
 .history-content button:hover,
 .menu-content button:hover,
 .settings-content button:hover,
-.report-content button:hover {
+.report-content button:hover,
+.save-select-content > button:hover {
   background: var(--gold-light);
   transform: scale(1.02);
+}
+
+/* ===== 存档选择面板 ===== */
+#save-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.save-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  border-radius: 10px;
+  padding: 14px 16px;
+  transition: all 0.3s;
+}
+
+.save-row.save-current {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.save-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.save-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.save-name .save-chapter {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-left: 8px;
+}
+
+.save-meta {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.save-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.save-actions button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.save-enter {
+  background: var(--gold);
+  color: var(--sepia-dark);
+}
+
+.save-enter:hover {
+  background: var(--gold-light);
+  transform: scale(1.05);
+}
+
+.save-delete {
+  background: transparent;
+  color: #e57373;
+  border: 2px solid #e57373 !important;
+}
+
+.save-delete:hover {
+  background: #e57373;
+  color: var(--sepia-dark);
+}
+
+.save-status,
+.save-empty {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  padding: 20px 0;
 }
 
 /* ===== 设置面板 ===== */

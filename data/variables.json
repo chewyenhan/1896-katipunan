@@ -67,19 +67,19 @@ const variablesData = {
 
   "relationships": {
     "bonifacio": {
-      "name": "博尼法西奥",
+      "name": "波尼法寿",
       "icon": "sword",
       "max": 100,
-      "description": "Katipunan 创始人，你的革命导师"
+      "description": "卡地普南 创始人，你的革命导师"
     },
     "jacinto": {
       "name": "雅辛托",
       "icon": "book",
       "max": 100,
-      "description": "Katipunan 智囊，Ideologue"
+      "description": "卡地普南 智囊，Ideologue"
     },
     "aguinaldo": {
-      "name": "阿奎纳多",
+      "name": "阿谨纳度",
       "icon": "building",
       "max": 100,
       "description": "革命领袖，后来的总统"
@@ -100,7 +100,7 @@ const variablesData = {
 
   "items": {
     "katipunan_password": {
-      "name": "Katipunan 密码",
+      "name": "卡地普南 密码",
       "description": "加入组织的秘密密码"
     },
     "cedula": {

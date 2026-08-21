@@ -19,12 +19,12 @@ const storyData = {
         {
           "speaker": "student",
           "name": "你",
-          "text": "今天老师又讲到了黎刹先生的小说《不许犯我》和《社会肿瘤》……他说，这些问题必须解决。"
+          "text": "今天老师又讲到了黎萨先生——他刚从欧洲回国，组织了一个叫「菲律宾同盟」的组织，主张与西班牙殖民政府合作，争取民族权利。他是第一个为我们民族发声的人，大家都称他为「国父」！"
         },
         {
           "speaker": "friend",
           "name": "你的朋友",
-          "text": "黎刹先生说得对，但我们能做什么呢？西班牙人的军队无处不在。"
+          "text": "黎萨先生说得对，他主张用和平的方式争取权利。但我们能做什么呢？西班牙人的军队无处不在。"
         },
         {
           "speaker": "narrator",
@@ -61,33 +61,37 @@ const storyData = {
     {
       "id": "chapter1_01",
       "chapter": 1,
-      "title": "黎刹的被捕",
+      "title": "黎萨的被捕",
       "year": 1892,
       "location": "马尼拉",
       "background": "assets/backgrounds/03_rizal_arrest.jpg",
       "dialogues": [
         {
           "speaker": "narrator",
-          "text": "7月6日，一个震惊菲律宾的消息传来——何塞·黎刹被捕了！"
+          "text": "7月6日，一个震惊菲律宾的消息传来——黎萨被捕了！"
         },
         {
           "speaker": "newspaper",
           "name": "报纸",
-          "text": "「黎刹先生因叛国罪被西班牙当局逮捕，将流放到达比丹（Dapitan）……」"
+          "text": "「黎萨先生因叛国罪被西班牙当局逮捕，将流放到达比丹（Dapitan）……」"
         },
         {
           "speaker": "citizen",
           "name": "路人",
-          "text": "黎刹只是写了书，为什么要抓他？"
+          "text": "黎萨只是写了书，为什么要抓他？"
         },
         {
           "speaker": "narrator",
           "text": "消息像野火一样蔓延。人们议论纷纷，有人愤怒，有人恐惧，有人沉默。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "毕竟，黎萨是第一个站出来争取菲律宾民族权利的人，人民称他为「国父」。他组织的「菲律宾同盟」，主张与西班牙殖民政府合作，通过和平方式争取民族权利。他的被捕，让无数人第一次怀疑：和平的道路，真的走得通吗？"
         }
       ],
       "choices": [
         {
-          "text": "为黎刹的遭遇感到愤怒",
+          "text": "为黎萨的遭遇感到愤怒",
           "effects": { "hope": 5, "support": 10, "fear": -5 },
           "score": 65,
           "next": "chapter1_02"
@@ -99,7 +103,7 @@ const storyData = {
           "next": "chapter1_02"
         },
         {
-          "text": "想要寻找更多像黎刹一样的人",
+          "text": "想要寻找更多像黎萨一样的人",
           "effects": { "support": 5, "leadership": 5 },
           "score": 70,
           "next": "chapter1_02"
@@ -109,14 +113,14 @@ const storyData = {
     {
       "id": "chapter1_02",
       "chapter": 1,
-      "title": "Katipunan 的诞生",
+      "title": "卡地普南 的诞生",
       "year": 1892,
       "location": "巴希云",
       "background": "assets/backgrounds/02_bonifacio_katipunan.jpg",
       "dialogues": [
         {
           "speaker": "narrator",
-          "text": "黎刹被捕后几天，一个名叫安德烈斯·博尼法西奥的人开始秘密活动。"
+          "text": "黎萨被捕后几天，一个名叫波尼法寿的人开始秘密活动。"
         },
         {
           "speaker": "narrator",
@@ -124,18 +128,18 @@ const storyData = {
         },
         {
           "speaker": "bonifacio",
-          "name": "Bonifacio",
+          "name": "波尼法寿",
           "portrait": "assets/characters/bonifacio.png",
-          "text": "同胞们！西班牙人的压迫已经够久了。我们要团结起来，建立一个秘密组织——Katipunan！"
+          "text": "同胞们！西班牙人的压迫已经够久了。我们要团结起来，建立一个秘密组织——卡地普南！"
         },
         {
           "speaker": "member",
           "name": "成员",
-          "text": "Bonifacio 先生，我们该如何做？"
+          "text": "波尼法寿 先生，我们该如何做？"
         },
         {
           "speaker": "bonifacio",
-          "name": "Bonifacio",
+          "name": "波尼法寿",
           "text": "我们要解放我们的祖国。但首先，我们需要更多像你这样的人加入。"
         },
         {
@@ -145,7 +149,7 @@ const storyData = {
       ],
       "choices": [
         {
-          "text": "立刻加入 Katipunan",
+          "text": "立刻加入 卡地普南",
           "effects": { "support": 15, "trust": 10, "alert": -5 },
           "score": 90,
           "items": ["katipunan_password"],
@@ -166,7 +170,7 @@ const storyData = {
       ],
       "historyPause": {
         "trigger": true,
-        "event": "Katipunan 成立",
+        "event": "卡地普南 成立",
         "historyId": "katipunan_founding",
         "examPoints": ["2.4.2.2 卡地普南武装斗争"],
         "nextScene": "chapter2_01"
@@ -182,7 +186,7 @@ const storyData = {
       "dialogues": [
         {
           "speaker": "narrator",
-          "text": "1896年8月，Katipunan 的秘密被一名成员的妻子意外泄露给西班牙人。"
+          "text": "1896年8月，卡地普南 的秘密被一名成员的妻子意外泄露给西班牙人。"
         },
         {
           "speaker": "jacinto",
@@ -192,20 +196,20 @@ const storyData = {
         },
         {
           "speaker": "bonifacio",
-          "name": "Bonifacio",
+          "name": "波尼法寿",
           "text": "那就让他们知道吧！是时候发动革命了！"
         },
         {
           "speaker": "narrator",
-          "text": "8月23日深夜，Katipunan 成员聚集在 Pugad Lawin 的一户人家。"
+          "text": "8月23日深夜，卡地普南 成员聚集在 Pugad Lawin 的一户人家。"
         },
         {
           "speaker": "narrator",
-          "text": "博尼法西奥拿起 cedula（税证），撕成了碎片。"
+          "text": "波尼法寿拿起 cedula（税证），撕成了碎片。"
         },
         {
           "speaker": "bonifacio",
-          "name": "Bonifacio",
+          "name": "波尼法寿",
           "text": "这是革命的信号！撕裂你们的 cedula，喊出你们的口号——'Live Long the Philippines!' 菲律宾万岁！"
         },
         {
@@ -256,6 +260,14 @@ const storyData = {
         {
           "speaker": "narrator",
           "text": "但战争并不顺利……西班牙人的装备优于我们。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "1896年12月30日，更沉重的消息传来——西班牙政府指控黎萨涉及武装革命事件，判处他死刑。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "在马尼拉的巴贡巴扬刑场，黎萨面朝大海，慷慨就义。他的死，让无数菲律宾人彻底告别了和平改良的幻想。"
         }
       ],
       "choices": [
@@ -283,7 +295,7 @@ const storyData = {
       "dialogues": [
         {
           "speaker": "narrator",
-          "text": "1897年3月，Katipunan 内部出现分裂。Magdiwang 和 Magdalos 两个派系产生了分歧。"
+          "text": "1897年3月，卡地普南 内部出现分裂。Magdiwang 和 Magdalos 两个派系产生了分歧。"
         }
       ],
       "choices": [],
@@ -298,7 +310,7 @@ const storyData = {
     {
       "id": "chapter5_01",
       "chapter": 5,
-      "title": "Bonifacio 的审判",
+      "title": "波尼法寿 的审判",
       "year": 1897,
       "location": "纳卡西格",
       "background": "assets/backgrounds/07_bonifacio_trial.jpg",
@@ -311,7 +323,70 @@ const storyData = {
       "choices": [],
       "historyPause": {
         "trigger": true,
-        "event": "Bonifacio 审判",
+        "event": "波尼法寿 审判",
+        "examPoints": ["2.4.2.3 菲律宾独立经过"],
+        "nextScene": "chapter5_02"
+      }
+    },
+    {
+      "id": "chapter5_02",
+      "chapter": 5,
+      "title": "和谈与决裂",
+      "year": 1897,
+      "location": "布拉干·边那巴多",
+      "background": "assets/backgrounds/08_independence_declaration.jpg",
+      "dialogues": [
+        {
+          "speaker": "narrator",
+          "text": "1897年底，革命陷入低谷。波尼法寿被处决后，卡地普南内部人心惶惶，西班牙殖民军的围剿也愈发猛烈。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "就在这时，革命的新领导人阿谨纳度做出了一个惊人的决定——与西班牙殖民政府和谈，放下武器。"
+        },
+        {
+          "speaker": "aguinaldo",
+          "name": "阿谨纳度",
+          "portrait": "assets/characters/aguinaldo.png",
+          "text": "我们打了这么久，伤亡惨重。如果西班牙愿意承认我们的权利，和平也许是另一种胜利。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "1897年12月，双方在布拉干的边那巴多（Biak-na-Bato）达成协议。西班牙殖民政府答应：不追究革命者的责任、给予赔偿，并承诺政治改革。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "阿谨纳度依约离开菲律宾，革命军放下了武器。但人们心中都埋着一个疑问——西班牙人会遵守承诺吗？"
+        },
+        {
+          "speaker": "member",
+          "name": "成员",
+          "text": "西班牙人什么时候遵守过承诺？放下武器，就是把命运交到敌人手里！"
+        }
+      ],
+      "choices": [
+        {
+          "text": "相信和谈，等待西班牙履行承诺",
+          "effects": { "hope": -5, "fear": -5 },
+          "score": 30,
+          "next": "chapter6_01"
+        },
+        {
+          "text": "心存疑虑，暗中保留武装",
+          "effects": { "trust": 5, "weapon": 5 },
+          "score": 60,
+          "next": "chapter6_01"
+        },
+        {
+          "text": "拒绝放下武器，继续战斗",
+          "effects": { "support": 15, "alert": 10 },
+          "score": 90,
+          "next": "chapter6_01"
+        }
+      ],
+      "historyPause": {
+        "trigger": true,
+        "event": "边那巴多和约",
         "examPoints": ["2.4.2.3 菲律宾独立经过"],
         "nextScene": "chapter6_01"
       }
@@ -326,7 +401,15 @@ const storyData = {
       "dialogues": [
         {
           "speaker": "narrator",
-          "text": "1898年6月12日，埃米利奥·阿奎纳多宣布菲律宾独立。"
+          "text": "正如许多人担心的那样——西班牙并没有兑现承诺！赔偿没有到位，政治改革也毫无踪影。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "愤怒的菲律宾人再次拿起武器，革命再起！阿谨纳度也从海外归来，重新领导革命。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "1898年6月12日，阿谨纳度在甲米地宣布菲律宾独立！"
         }
       ],
       "choices": [],
@@ -340,20 +423,36 @@ const storyData = {
     {
       "id": "chapter7_01",
       "chapter": 7,
-      "title": "美菲战争",
-      "year": 1899,
-      "location": "菲律宾",
+      "title": "美西战争",
+      "year": 1898,
+      "location": "马尼拉湾",
       "background": "assets/backgrounds/09_american_war.jpg",
       "dialogues": [
         {
           "speaker": "narrator",
-          "text": "然而，独立的喜悦是短暂的……美国人来了。"
+          "text": "1898年，远方的加勒比海传来炮声——美国与西班牙因古巴问题爆发了美西战争。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "美国军队来到了菲律宾，与卡地普南合作，共同对付西班牙殖民者。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "马尼拉湾海战中，美国舰队一举击败西班牙舰队；陆地上，卡地普南的军队也向西班牙殖民军发起总攻。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "西班牙战败了！1898年12月，美西双方签署《巴黎条约》，西班牙将菲律宾割让给美国。"
+        },
+        {
+          "speaker": "narrator",
+          "text": "菲律宾人民赶走了西班牙殖民者，却迎来了新的殖民者——美国。独立的喜悦，很快被现实的阴影笼罩。"
         }
       ],
       "choices": [],
       "historyPause": {
         "trigger": true,
-        "event": "美菲战争",
+        "event": "美西战争与美西合约",
         "examPoints": ["2.4.2.3 菲律宾独立经过", "2.4.2.4 军人独裁的菲律宾"],
         "nextScene": "ending"
       }

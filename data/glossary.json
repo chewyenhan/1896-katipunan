@@ -2,9 +2,9 @@ const glossaryData = {
   "terms": [
     {
       "id": "katipunan",
-      "term": "Katipunan",
+      "term": "卡地普南",
       "termEn": "Katipunan (KKK)",
-      "definition": "全称Katipunan ng mga Anak ng Bayan（民族之子协会），由安德烈斯·博尼法西奥于1892年创立的秘密革命组织。目标是争取菲律宾独立。",
+      "definition": "全称Katipunan ng mga Anak ng Bayan（民族之子协会），由波尼法寿于1892年创立的秘密革命组织。目标是争取菲律宾独立。",
       "examPoints": ["2.4.2.2"],
       "image": ""
     },
@@ -18,7 +18,7 @@ const glossaryData = {
     },
     {
       "id": "rizal",
-      "term": "何塞·黎刹",
+      "term": "黎萨",
       "termEn": "Jose Rizal",
       "definition": "菲律宾民族英雄，作家、医生。创作《不许犯我》和《社会肿瘤》，揭露殖民统治的黑暗。虽然不支持武装革命，但他的思想激发了民族主义。1896年被处决。",
       "examPoints": ["2.4.2.2"],
@@ -26,17 +26,17 @@ const glossaryData = {
     },
     {
       "id": "bonifacio",
-      "term": "安德烈斯·博尼法西奥",
+      "term": "波尼法寿",
       "termEn": "Andres Bonifacio",
-      "definition": "Katipunan 创始人，被称为'革命之父'。领导1896年革命爆发。后因与阿奎纳多的权力斗争被处决。",
+      "definition": "卡地普南 创始人，被称为'革命之父'。领导1896年革命爆发。后因与阿谨纳度的权力斗争被处决。",
       "examPoints": ["2.4.2.2", "2.4.2.3"],
       "image": ""
     },
     {
       "id": "aguinaldo",
-      "term": "埃米利奥·阿奎纳多",
+      "term": "阿谨纳度",
       "termEn": "Emilio Aguinaldo",
-      "definition": "菲律宾革命领袖，第一共和国总统。在 Tejeros Convention 中击败博尼法西奥派系。后与美国合作，但菲律宾最终被美国殖民。",
+      "definition": "菲律宾革命领袖，第一共和国总统。在 Tejeros Convention 中击败波尼法寿派系。后与美国合作，但菲律宾最终被美国殖民。",
       "examPoints": ["2.4.2.3", "2.4.2.4"],
       "image": ""
     },
@@ -44,7 +44,7 @@ const glossaryData = {
       "id": "cry_of_pugad_lawin",
       "term": "Cry of Pugad Lawin",
       "termEn": "Cry of Pugad Lawin",
-      "definition": "1896年8月23日，Katipunan 成员在 Pugad Lawin 撕碎 cedula，标志着菲律宾革命正式爆发。",
+      "definition": "1896年8月23日，卡地普南 成员在 Pugad Lawin 撕碎 cedula，标志着菲律宾革命正式爆发。",
       "examPoints": ["2.4.2.2"],
       "image": ""
     },
@@ -52,7 +52,15 @@ const glossaryData = {
       "id": "tejeros_convention",
       "term": "Tejeros Convention",
       "termEn": "Tejeros Convention",
-      "definition": "1897年3月22日召开的革命派系会议，阿奎纳多当选总统，博尼法西奥被边缘化，导致后来的悲剧。",
+      "definition": "1897年3月22日召开的革命派系会议，阿谨纳度当选总统，波尼法寿被边缘化，导致后来的悲剧。",
+      "examPoints": ["2.4.2.3"],
+      "image": ""
+    },
+    {
+      "id": "biak_na_bato",
+      "term": "边那巴多和约",
+      "termEn": "Pact of Biak-na-Bato",
+      "definition": "1897年12月，革命新领导人阿谨纳度与西班牙殖民政府签订的停战协议。西班牙答应不追究革命者责任、给予赔偿并承诺政治改革，但并未兑现承诺，革命再起。",
       "examPoints": ["2.4.2.3"],
       "image": ""
     },
@@ -76,7 +84,7 @@ const glossaryData = {
       "id": "magdiwang_magdalos",
       "term": "Magdiwang 与 Magdalos",
       "termEn": "Magdiwang and Magdalos",
-      "definition": "Katipunan 内部的两个派系。Magdiwang 支持博尼法西奥，Magdalos 支持阿奎纳多。两派的分裂导致了革命力量的削弱。",
+      "definition": "卡地普南 内部的两个派系。Magdiwang 支持波尼法寿，Magdalos 支持阿谨纳度。两派的分裂导致了革命力量的削弱。",
       "examPoints": ["2.4.2.3"],
       "image": ""
     }

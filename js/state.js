@@ -51,23 +51,22 @@ class GameState {
       totalPlayTime: 0
     };
 
-    this.state = this.loadState() || this.defaultState;
+    // 不再自动读取本地存档——多存档由 saver.selectSave() 在进入时载入具体记录
+    this.state = Utils.deepClone(this.defaultState);
   }
 
+  // 多存档：载入由 saver.selectSave() 负责，这里不直接读 localStorage
   loadState() {
-    try {
-      const saved = localStorage.getItem('1896_revolution_save');
-      return saved ? JSON.parse(saved) : null;
-    } catch (e) {
-      console.error('加载存档失败:', e);
-      return null;
-    }
+    return null;
   }
 
   saveState() {
     try {
-      localStorage.setItem('1896_revolution_save', JSON.stringify(this.state));
-      return true;
+      if (typeof saver !== 'undefined') {
+        saver.save();
+        return true;
+      }
+      return false;
     } catch (e) {
       console.error('保存存档失败:', e);
       return false;
@@ -76,7 +75,9 @@ class GameState {
 
   resetState() {
     this.state = Utils.deepClone(this.defaultState);
-    this.saveState();
+    if (typeof saver !== 'undefined') {
+      saver.startNewGame(); // 重新开始 = 开一个新存档槽（旧记录保留在列表）
+    }
   }
 
   // 更新变量
