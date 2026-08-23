@@ -7,7 +7,8 @@ class AudioSystem {
     this.sfxChoice = document.getElementById('sfx-choice');
 
     this.musicEnabled = true;
-    this.volume = 0.5;
+    this.volume = 0.5;        // 背景音乐音量（0~1，由右上角滑杆控制）
+    this.voiceVolume = 1.0;   // 对话语音音量固定满格，不随 BGM 滑杆变化
     this.currentBGM = null;
 
   // BGM 配置（Kevin MacLeod / incompetech.com，CC-BY 4.0 免版权）
@@ -75,7 +76,7 @@ class AudioSystem {
     const el = document.getElementById('voice-audio');
     if (!el) return;
     el.src = src;
-    el.volume = this.volume;
+    el.volume = this.voiceVolume;
     el.onerror = () => { if (onError) onError(); };
     el.play().catch(() => { if (onError) onError(); });
   }
