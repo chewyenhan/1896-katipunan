@@ -258,10 +258,9 @@ class UISystem {
       leadership:      { mp4: 'ending_leadership.mp4', frame: 'frame_leadership.jpg', title: '天生的领袖',         sub: '振臂一呼，应者云集。' },
     };
 
-    // 最高属性决定人格
-    const report = game.getReportData();
-    const maxStat = Object.entries(report).reduce((a, b) => a[1] > b[1] ? a : b)[0];
-    const meta = META[maxStat] || META.courage;
+    // 人格倾向与综合成绩分开计算；动画由选择累积的人格点决定
+    const report = this.getScoringReport();
+    const meta = META[report.personalityKey] || META.courage;
     const vidUrl = `assets/endings/${meta.mp4}`;
     const frameUrl = `assets/endings/${meta.frame}`;
 
@@ -328,22 +327,36 @@ class UISystem {
 
   // 显示革命报告
   showRevolutionReport() {
-    const report = game.getReportData();
-    const totalScore = this.computeTotalScore();
-    const grade = this.getGrade(totalScore);
+    const report = this.getScoringReport();
+    if (!report.complete) {
+      document.getElementById('report-score').innerHTML =
+        '<div class="score-panel grade-d">成绩资料不完整，无法计算。</div>';
+      document.getElementById('report-stats').innerHTML = '';
+      document.getElementById('report-personality').innerHTML = '';
+      document.getElementById('report-leaderboard').innerHTML = '';
+      this.revolutionReport.classList.remove('hidden');
+      return;
+    }
+    const totalScore = report.totalScore;
+    const grade = report.grade;
 
     // 综合表现打分
     document.getElementById('report-score').innerHTML = `
       <div class="score-panel ${grade.cls}">
         <div class="score-number">${totalScore}<span class="score-max"> / 100</span></div>
-        <div class="score-grade">${grade.grade} 级 · ${grade.label}</div>
-        <div class="score-note">综合表现得分（关键选择的革命认同度）</div>
+        <div class="score-grade">${grade.grade} 级 · ${grade.prefix}${report.personalityLabel}</div>
+        <div class="score-note">历史判断 40% · 革命意志 35% · 团队责任 25%</div>
       </div>
     `;
 
-    const statsHTML = Object.entries(report).map(([key, value]) => `
+    const dimensionNames = {
+      historicalJudgment: '历史判断',
+      revolutionaryWill: '革命意志',
+      teamResponsibility: '团队责任'
+    };
+    const statsHTML = Object.entries(report.dimensions).map(([key, value]) => `
       <div class="stat-bar">
-        <span class="label">${this.getStatName(key)}</span>
+        <span class="label">${dimensionNames[key]}</span>
         <div class="bar"><div class="fill" style="width: ${value}%"></div></div>
         <span class="value">${value}</span>
       </div>
@@ -351,8 +364,10 @@ class UISystem {
 
     document.getElementById('report-stats').innerHTML = statsHTML;
     document.getElementById('report-personality').innerHTML = `
-      <p><strong>革命人格：</strong>${this.getPersonalityType(report)}</p>
-      <p>${this.getPersonalityDescription(report)}</p>
+      <p><strong>革命人格：</strong>${report.personalityLabel}</p>
+      <p>${grade.grade === 'D'
+        ? '你的行动风格已经形成，但还需要更主动地理解局势并承担集体责任。'
+        : '你的选择体现了独特的革命道路；人格类型不代表高低，总分反映综合判断。'}</p>
     `;
 
     document.getElementById('report-exam-mapping').innerHTML = `
@@ -367,33 +382,11 @@ class UISystem {
     this.revolutionReport.classList.remove('hidden');
 
     // 云端排行榜（提交成绩 + 拉取榜单）
-    this.submitAndLoadLeaderboard(totalScore, grade.label);
+    this.submitAndLoadLeaderboard(totalScore, `${grade.prefix}${report.personalityLabel}`);
   }
 
-  // 计算综合得分：所选选项 score 的平均值（0-100）
-  computeTotalScore() {
-    let total = 0, count = 0;
-    for (const c of game.state.choices) {
-      const scene = storyData.scenes.find(s => s.id === c.scene);
-      if (!scene || !scene.choices) continue;
-      // 与 choice.js 相同：按条件过滤后取索引
-      const validChoices = scene.choices.filter(ch => !ch.condition || game.checkCondition(ch.condition));
-      const choice = validChoices[c.choice];
-      if (choice && typeof choice.score === 'number') {
-        total += choice.score;
-        count++;
-      }
-    }
-    return count ? Math.round(total / count) : 0;
-  }
-
-  // 评级
-  getGrade(score) {
-    if (score >= 85) return { grade: 'S', label: '革命先驱', cls: 'grade-s' };
-    if (score >= 70) return { grade: 'A', label: '坚定革命者', cls: 'grade-a' };
-    if (score >= 55) return { grade: 'B', label: '觉醒青年', cls: 'grade-b' };
-    if (score >= 40) return { grade: 'C', label: '旁观者', cls: 'grade-c' };
-    return { grade: 'D', label: '沉默的大多数', cls: 'grade-d' };
+  getScoringReport() {
+    return ScoringSystem.computeReport(game.state.choices, storyData);
   }
 
   // 提交成绩 + 拉取排行榜（Cloudflare KV）
@@ -496,46 +489,6 @@ class UISystem {
       ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
   }
 
-  // 获取统计名称
-  getStatName(key) {
-    const names = {
-      courage: '勇气',
-      loyalty: '忠诚',
-      politicalSense: '政治敏锐',
-      riskTaking: '风险承受',
-      compassion: '同情心',
-      leadership: '领导力'
-    };
-    return names[key] || key;
-  }
-
-  // 获取人格类型
-  getPersonalityType(report) {
-    const maxStat = Object.entries(report).reduce((a, b) => a[1] > b[1] ? a : b);
-
-    const types = {
-      courage: '勇敢的战士',
-      loyalty: '忠诚的同志',
-      politicalSense: '精明的政治家',
-      riskTaking: '冒险的革命者',
-      compassion: '仁慈的理想主义者',
-      leadership: '天生的领袖'
-    };
-
-    return types[maxStat[0]] || '坚定的革命者';
-  }
-
-  // 获取人格描述
-  getPersonalityDescription(report) {
-    return '基于你的选择，你在革命中更重视' +
-      (report.courage > 70 ? '勇敢抗争' : '') +
-      (report.loyalty > 70 ? '同志情谊' : '') +
-      (report.politicalSense > 70 ? '政治智慧' : '') +
-      (report.riskTaking > 70 ? '冒险精神' : '') +
-      (report.compassion > 70 ? '人道关怀' : '') +
-      (report.leadership > 70 ? '领导责任' : '') +
-      '。';
-  }
 }
 
 // 全局 UI 实例

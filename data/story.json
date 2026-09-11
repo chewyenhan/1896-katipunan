@@ -36,18 +36,24 @@ const storyData = {
           "text": "继续研究民族主义思想",
           "effects": { "hope": 5, "support": 5 },
           "score": 60,
+          "scores": { "historicalJudgment": 95, "revolutionaryWill": 75, "teamResponsibility": 70 },
+          "endingTraits": { "politicalSense": 2, "compassion": 1 },
           "next": "chapter1_01"
         },
         {
           "text": "回到家中帮助父亲",
           "effects": { "hope": 0, "support": 0 },
           "score": 30,
+          "scores": { "historicalJudgment": 55, "revolutionaryWill": 35, "teamResponsibility": 90 },
+          "endingTraits": { "compassion": 3, "loyalty": 1 },
           "next": "chapter1_01"
         },
         {
           "text": "去市场打听消息",
           "effects": { "fear": 3, "reputation": 2 },
           "score": 50,
+          "scores": { "historicalJudgment": 80, "revolutionaryWill": 60, "teamResponsibility": 75 },
+          "endingTraits": { "politicalSense": 2, "riskTaking": 1 },
           "next": "chapter1_01"
         }
       ],
@@ -100,18 +106,24 @@ const storyData = {
           "text": "为黎萨的遭遇感到愤怒",
           "effects": { "hope": 5, "support": 10, "fear": -5 },
           "score": 65,
+          "scores": { "historicalJudgment": 70, "revolutionaryWill": 85, "teamResponsibility": 60 },
+          "endingTraits": { "courage": 2, "compassion": 1 },
           "next": "chapter1_02"
         },
         {
           "text": "担心自己也会受到牵连",
           "effects": { "fear": 10, "hope": -5 },
           "score": 40,
+          "scores": { "historicalJudgment": 55, "revolutionaryWill": 35, "teamResponsibility": 55 },
+          "endingTraits": { "compassion": 1 },
           "next": "chapter1_02"
         },
         {
           "text": "想要寻找更多像黎萨一样的人",
           "effects": { "support": 5, "leadership": 5 },
           "score": 70,
+          "scores": { "historicalJudgment": 95, "revolutionaryWill": 85, "teamResponsibility": 90 },
+          "endingTraits": { "leadership": 2, "loyalty": 1 },
           "next": "chapter1_02"
         }
       ]
@@ -158,6 +170,8 @@ const storyData = {
           "text": "立刻加入 卡地普南",
           "effects": { "support": 15, "trust": 10, "alert": -5 },
           "score": 90,
+          "scores": { "historicalJudgment": 85, "revolutionaryWill": 100, "teamResponsibility": 85 },
+          "endingTraits": { "loyalty": 2, "courage": 1 },
           "items": ["katipunan_password"],
           "next": "chapter2_01"
         },
@@ -165,12 +179,16 @@ const storyData = {
           "text": "犹豫，想要了解更多",
           "effects": { "fear": 5, "support": 5 },
           "score": 55,
+          "scores": { "historicalJudgment": 90, "revolutionaryWill": 70, "teamResponsibility": 80 },
+          "endingTraits": { "politicalSense": 2 },
           "next": "chapter2_01"
         },
         {
           "text": "拒绝，保持距离",
           "effects": { "fear": 10, "support": -5 },
           "score": 25,
+          "scores": { "historicalJudgment": 45, "revolutionaryWill": 25, "teamResponsibility": 55 },
+          "endingTraits": { "compassion": 1 },
           "next": "chapter2_01"
         }
       ],
@@ -234,18 +252,24 @@ const storyData = {
           "text": "跟着大家一起撕碎税证",
           "effects": { "support": 15, "hope": 10, "fear": -5 },
           "score": 85,
+          "scores": { "historicalJudgment": 95, "revolutionaryWill": 100, "teamResponsibility": 90 },
+          "endingTraits": { "courage": 2, "riskTaking": 2 },
           "next": "chapter3_01"
         },
         {
           "text": "犹豫着，但最终加入了",
           "effects": { "support": 10, "fear": 5 },
           "score": 65,
+          "scores": { "historicalJudgment": 85, "revolutionaryWill": 80, "teamResponsibility": 80 },
+          "endingTraits": { "loyalty": 2, "courage": 1 },
           "next": "chapter3_01"
         },
         {
           "text": "后退，选择旁观",
           "effects": { "fear": 10, "support": -5 },
           "score": 30,
+          "scores": { "historicalJudgment": 50, "revolutionaryWill": 25, "teamResponsibility": 50 },
+          "endingTraits": { "politicalSense": 1, "compassion": 1 },
           "next": "chapter3_01"
         }
       ],
@@ -293,12 +317,16 @@ const storyData = {
           "text": "坚守阵地",
           "effects": { "hope": 10, "weapon": -2 },
           "score": 75,
+          "scores": { "historicalJudgment": 60, "revolutionaryWill": 100, "teamResponsibility": 55 },
+          "endingTraits": { "courage": 2, "loyalty": 1 },
           "next": "chapter4_01"
         },
         {
           "text": "撤退保存实力",
           "effects": { "fear": 5, "support": -5, "food": 5 },
           "score": 45,
+          "scores": { "historicalJudgment": 95, "revolutionaryWill": 75, "teamResponsibility": 100 },
+          "endingTraits": { "leadership": 2, "politicalSense": 2, "compassion": 1 },
           "next": "chapter4_01"
         }
       ]
@@ -399,18 +427,24 @@ const storyData = {
           "text": "相信和谈，等待西班牙履行承诺",
           "effects": { "hope": -5, "fear": -5 },
           "score": 30,
+          "scores": { "historicalJudgment": 45, "revolutionaryWill": 35, "teamResponsibility": 70 },
+          "endingTraits": { "compassion": 2, "politicalSense": 1 },
           "next": "chapter6_01"
         },
         {
           "text": "心存疑虑，暗中保留武装",
           "effects": { "trust": 5, "weapon": 5 },
           "score": 60,
+          "scores": { "historicalJudgment": 100, "revolutionaryWill": 85, "teamResponsibility": 95 },
+          "endingTraits": { "politicalSense": 3, "leadership": 1 },
           "next": "chapter6_01"
         },
         {
           "text": "拒绝放下武器，继续战斗",
           "effects": { "support": 15, "alert": 10 },
           "score": 90,
+          "scores": { "historicalJudgment": 65, "revolutionaryWill": 100, "teamResponsibility": 60 },
+          "endingTraits": { "riskTaking": 2, "courage": 2 },
           "next": "chapter6_01"
         }
       ],
